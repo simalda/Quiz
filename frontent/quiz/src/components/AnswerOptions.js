@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import '../index.css';
 
-
-
-function AnswerOptions({title, onClick}){
-    const prop = {title, onClick}
-    console.log('ON CLICK', prop)
-    return(
-          <div id="answer" className="answer" onClick = {() => {onClick(title);}}>
-      <h4>{title}</h4>
+class AnswerOptions extends React.Component{
+  constructor(props) {
+    super(props)
+    this.state ={clasname : "answer"}
+  }
+     
+    render(){return(
+          <div id="answer" className = {this.state.clasname}  
+          onClick = {() => {this.props.onClick(this.props.title); this.props.highlight === "correct" ? this.state.clasname = "answer correct":this.state.clasname = "answer incorrect"}  }>
+      <h4>{this.props.title}</h4>
       </div>
     );
   }
+}
 
   export default  AnswerOptions
+ 

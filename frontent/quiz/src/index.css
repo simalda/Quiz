@@ -12,3 +12,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/*ContinueB utton*/
+.btn3 {
+  border: 2px solid black;
+  background-color: #e7e7e7;
+  color: black;
+  padding: 4px 8px;
+  height: 52px;
+  width: 132px;
+  font-size: 16px;
+  cursor: pointer;
+  position: left;
+  border-radius: 5px;
+}
+
+.default {
+  border-color: gray;
+  color: black;
+}
+
+.default:hover {
+  background: #abb0ba;
+  
+}
+
+/* AnswerOptions*/
+.correct{
+  border: solid 5px  #00e600;
+}
+
+.incorrect{
+  border: solid 5px  #ff0055;
+}
