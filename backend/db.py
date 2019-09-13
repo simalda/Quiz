@@ -8,7 +8,7 @@ class SQL(object):
         username = 'sofa'
         password = 'MyDatabasePassword1'
         driver= '{ODBC Driver 17 for SQL Server}'
-        self.cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
+        self.cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password+'; MARS_Connection=Yes')
 
     def SelectQuestionTable(self):
         cursor = self.cnxn.cursor()
@@ -27,19 +27,34 @@ class SQL(object):
         cursor = self.cnxn.cursor()
         cursor.execute("SELECT  Id, Question, CorrectAnswer FROM [dbo].[QuizQuestion]")
         tabl = list()
-        fullQuestion = {}
-        i=0
+       
         numberOfQuestions =2
         row = cursor.fetchone()
-        while row:             
+        while row:
+            fullQuestion = {}             
             fullQuestion['question'] = str(row[1])
             fullQuestion['correctAnswer'] = str(row[2])
+            cursor2 = self.cnxn.cursor()
+            cursor2.execute("select  dbo.QuizAnswer.Answer,  [dbo].[QuizQuestion].id, dbo.[QuizQuestion].Question , dbo.QuizQuestionAnswersConnector.AnswerId  from [dbo].[QuizQuestion] \
+                inner join dbo.QuizQuestionAnswersConnector ON [dbo].[QuizQuestion].id = dbo.QuizQuestionAnswersConnector.QuestionId  AND [dbo].[QuizQuestion].id ="+ str(row[0]) +
+                "inner join dbo.QuizAnswer ON dbo.QuizQuestionAnswersConnector.AnswerId = dbo.QuizAnswer.Id")
+            answersFromSQL = list()
+            row2 = cursor2.fetchone()
+            while row2:
+                answersFromSQL.append(str(row2[0]))
+                row2 = cursor2.fetchone()
+            random.shuffle(answersFromSQL)
+            
+            answersFromSQL[:numberOfQuestions]
+            answersFromSQL.append(str(row[2]))
+            random.shuffle(answersFromSQL)  
+            fullQuestion['answer1'] = str(answersFromSQL[0])
+            fullQuestion['answer2'] = str(answersFromSQL[1])
+            #fullQuestion['answer3'] = str(answersFromSQL[2])
+            fullQuestion['answer4'] = str(answersFromSQL[2])
             tabl.append(fullQuestion)
             print (str(row[0]) + " " + str(row[1]))
             row = cursor.fetchone()
-        print(tabl)
-        random.shuffle(tabl)
-        print(tabl)
         return tabl
 
         #  def SelectQuestionsforQuiz(self):

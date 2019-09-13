@@ -2,12 +2,21 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "../index.css";
 
-function ResultPage({ title, highlight, onClick }) {
-  var clasname = "answer " + (!!highlight ? highlight : "");
-
-  return (
+class ResultPage extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+    incorrectAnswers = this.props.numberOfQuestions -
+    this.props.numberOfCorrectAnswers
+    percentage = (this.props.numberOfCorrectAnswers*100)/this.props.numberOfQuestions
+  render(){return (
+    <div>
     <div> Result Page </div>
+    <div>Your result is {this.percentage} %: number of correct answers -- {this.props.numberOfCorrectAnswers}, 
+    number of inccorect answers -- {this.incorrectAnswers}</div>
+    </div>
   );
+  }
 }
 
 export default ResultPage;

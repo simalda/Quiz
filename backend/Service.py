@@ -32,12 +32,12 @@ def get_questions():
       {
         "question": innerInfo[0]['question'],
         "correctAnswer": innerInfo[0]['correctAnswer'],
-        "answerOptions": ["a11", "a12", "a13", "a14"]
+        "answerOptions": [innerInfo[0]['answer1'],innerInfo[0]['answer2'],innerInfo[0]['answer4'] ]
       },
       {
         "question": innerInfo[1]['question'],
         "correctAnswer": innerInfo[1]['correctAnswer'],
-        "answerOptions": ["a21", "a22", "a23"]
+        "answerOptions": [innerInfo[1]['answer1'],innerInfo[1]['answer2'],innerInfo[1]['answer4'] ]
       }
          
     ]

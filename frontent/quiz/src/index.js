@@ -61,22 +61,22 @@ class App extends React.Component {
     // this.staticQuiz = [
     //   {
     //     question: "q1",
-       
+
     //     answer: ["a11", "a12", "a13", "a14"]
     //   },
     //   {
     //     question: "q2",
-         
+
     //     answer: ["a21", "a22", "a23"]
     //   },
     //   {
     //     question: "q3",
-    
+
     //     answer: ["a31", "a32", "a33", "a34"]
     //   },
     //   {
     //     question: "a",
-       
+
     //     answer: ["b", "n", "c", "d", "x"]
     //   }
     // ];
@@ -100,18 +100,17 @@ class App extends React.Component {
       .then(response => response.json())
       .then(x);
   }
-   
 
   getTurnData(quiz) {
     const allAnswerOptions = quiz.reduce(function(p, c, i) {
       return p.concat(c.answer);
     }, []);
-     const question = sample(quiz);
+    const question = sample(quiz);
     const correctAnswer = quiz.correctAnswer;
     const treeRandomOptions = shuffle(question.answerOptions).slice(0, 3);
     console.log("treeRandomOptions", typeof treeRandomOptions);
     treeRandomOptions.push(correctAnswer);
-    shuffle(treeRandomOptions)
+    shuffle(treeRandomOptions);
     return {
       question: question,
       correctAnswer: correctAnswer,
@@ -119,14 +118,14 @@ class App extends React.Component {
     };
   }
 
-  
   onAnswerSelected(kAnswer) {
     if (this.state.isAnswerSelected === 0) {
-      // if(this.state.selectedAnswer === this.state.correctAnswer){
-      //     numberOfCorrectAnswers : this.state.numberOfCorrectAnswers+1
-      // }
-      this.setState({
+    this.setState({
         ...this.state,
+        numberOfCorrectAnswers:
+          kAnswer === this.state.correctAnswer
+            ? this.state.numberOfCorrectAnswers + 1
+            : this.state.numberOfCorrectAnswers,
         isAnswerSelected: 1,
         selectedAnswer: kAnswer
       });
@@ -145,8 +144,10 @@ class App extends React.Component {
         page: 0,
         quiz: quizData,
         question: quizData[this.state.numberOfCurrentQuestion].question,
-        correctAnswer: quizData[this.state.numberOfCurrentQuestion].correctAnswer,
-        answerOptions: quizData[this.state.numberOfCurrentQuestion].answerOptions,
+        correctAnswer:
+          quizData[this.state.numberOfCurrentQuestion].correctAnswer,
+        answerOptions:
+          quizData[this.state.numberOfCurrentQuestion].answerOptions,
         numberOfCurrentQuestion: this.state.numberOfCurrentQuestion + 1
       });
     });
@@ -157,7 +158,7 @@ class App extends React.Component {
   //   var i
   //   for(i=0; i<10;  i++){
   //       this.state.quiz[i] =this.getTurnData( this.staticQuiz )
-  //   }        
+  //   }
 
   //     this.setState({
   //       ...this.state,
@@ -168,28 +169,29 @@ class App extends React.Component {
   //       answerOptions: this.state.quiz[this.state.currentQuestion].answerOptions,
   //       currentQuestion: this.state.currentQuestion + 1
   //     });
-     
+
   // }
 
   continueButtonClicked() {
-    if (this.state.numberOfQuestions === this.state.numberOfCurrentQuestion ) {
+    if (this.state.numberOfQuestions === this.state.numberOfCurrentQuestion) {
       this.setState({
         ...this.state,
-        page : 2});
-      }
-      else {
-         this.setState({
-      ...this.state,
-      isAnswerSelected: 0,
-      question: this.state.quiz[this.state.numberOfCurrentQuestion].question,
-      correctAnswer: this.state.quiz[this.state.numberOfCurrentQuestion].correctAnswer,
-      answerOptions: this.state.quiz[this.state.numberOfCurrentQuestion].answerOptions,
-      numberOfCurrentQuestion: this.state.numberOfCurrentQuestion + 1,
-      selectedAnswer: ""
-    });
+        page: 2
+      });
+    } else {
+      this.setState({
+        ...this.state,
+        isAnswerSelected: 0,
+        question: this.state.quiz[this.state.numberOfCurrentQuestion].question,
+        correctAnswer: this.state.quiz[this.state.numberOfCurrentQuestion]
+          .correctAnswer,
+        answerOptions: this.state.quiz[this.state.numberOfCurrentQuestion]
+          .answerOptions,
+        numberOfCurrentQuestion: this.state.numberOfCurrentQuestion + 1,
+        selectedAnswer: ""
+      });
+    }
   }
-}
-
 
   prepareQuiz() {}
 
@@ -205,7 +207,7 @@ class App extends React.Component {
           <div className="col-lg-3"></div>
         </div>
       );
-    } else if(this.state.page === 0){
+    } else if (this.state.page === 0) {
       body = (
         <div>
           <div className="row">
@@ -228,27 +230,27 @@ class App extends React.Component {
           </div>
         </div>
       );
-    } else if(this.state.page === 2){
-    body = (
-      <div>
-        <div className="row">
-          <div className="col-lg-1"></div>
-          <div className="col-lg-10">
-            <ResultPage />
-            {alert("The number of correct unswers ,the number of inccorect unswers")}
+    } else if (this.state.page === 2) {
+      body = (
+        <div>
+          <div className="row">
+            <div className="col-lg-1"></div>
+            <div className="col-lg-10">
+              <ResultPage {...this.state} />
+               
+            </div>
+            <div className="col-lg-1"></div>
           </div>
-          <div className="col-lg-1"></div>
-        </div>
-        <div className="row">
-          <div className="col-lg-9"></div>
-          <div className="col-lg-1">
-            {" "}
-            <ContinueButton nextTurn={() => this.continueButtonClicked()} />
+          <div className="row">
+            <div className="col-lg-9"></div>
+            <div className="col-lg-1">
+              {" "}
+              {/* //<ContinueButton nextTurn={() => this.continueButtonClicked()} /> */}
+            </div>
+            <div className="col-lg-2"></div>
           </div>
-          <div className="col-lg-2"></div>
         </div>
-      </div>
-    );
+      );
     }
     return (
       <div className="container-fluid">
