@@ -1,21 +1,15 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import '../index.css';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import "../index.css";
 
-class AnswerOptions extends React.Component{
-  constructor(props) {
-    super(props)
-    this.state ={clasname : "answer"}
-  }
-     
-    render(){return(
-          <div id="answer" className = {this.state.clasname}  
-          onClick = {() => {this.props.onClick(this.props.title); this.props.highlight === "correct" ? this.state.clasname = "answer correct":this.state.clasname = "answer incorrect"}  }>
-      <h4>{this.props.title}</h4>
-      </div>
-    );
-  }
+function AnswerOptions({ title, highlight, onClick }) {
+  var clasname = "answer " + (!!highlight ? highlight : "");
+
+  return (
+    <div id="answer" className={clasname} onClick={() => onClick(title)}>
+      <h4>{title}</h4>
+    </div>
+  );
 }
 
-  export default  AnswerOptions
- 
+export default AnswerOptions;

@@ -1,8 +1,13 @@
 import React from 'react'
 import '../index.css';
 
-function ContinueButton({nextTurn}){
-    return(<button class ="btn3 default" key="button"  id="ContinueButton" onClick = {nextTurn} > Continue</button>)
+class ContinueButton extends React.Component {
+  constructor(props) {
+    super(props);
   }
+  render(){
+    return(<button className ="btn3 default" key="button"  id="ContinueButton" onClick = {() =>this.props.nextTurn()} > Continue</button>)
+  }
+}
 
-  export default  ContinueButton 
+export default ContinueButton;
