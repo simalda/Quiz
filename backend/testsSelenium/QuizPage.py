@@ -8,13 +8,14 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException 
 import sys
-sys.path.insert(0, '/home/sofya/Projects/Quiz/backend/testsSelenium/Configurations')
-from AppConfigReader import AppConfigReader
-
+sys.path.append(  r'C:\\Users\\simal\\Desktop\\Python- final-project\\Code\backend\\testsSelenium\\Configurations')
+import AppConfigReader 
+import BrowserManager
+import AppConfigKeys
 class TestClass(unittest.TestCase):
     @classmethod
     def setUpClass(self):
-            self.driver = webdriver.Chrome()
+            self.driver = webdriver.Chrome() # BrowserManager.Browser.create_new_driver( AppConfigReader.AppConfigReader.GetBrowser())
             self.driver.implicitly_wait(20)
             self.driver.set_page_load_timeout(20)
             self.driver.maximize_window()
@@ -23,24 +24,35 @@ class TestClass(unittest.TestCase):
 
     def setUp(self):        
         #self.driver.get("http://localhost:3000/")
-        self.driver.get(AppConfigReader.GetWebsite())
+        self.driver.get(AppConfigReader.AppConfigReader.GetWebsite())
         time.sleep(2)
-   
+        elemButton = self.driver.find_element_by_id("Python")
+        elemButton.click()
+        delay = 3 # seconds
+        try:
+            WebDriverWait(self.driver, delay).until(EC.presence_of_element_located((By.ID, 'question')))
+        except TimeoutException:
+            print ("Loading took too much time!")
+
+     
+
     
 
     def test_AddAQuestionMovetoCorrectPage(self):
         elemLink = self.driver.find_element_by_id("addQuestion")
         elemLink.click()
         bol = self.CheckIfExist("//h1[@id='addQuestion']")
-        self.assertTrue(bol,"Add question form didn't open")
+        self.assertTrue(bol,"Add question form didn't exist")
 
     def test_ContinueButtonMovetoNextQuestion(self):
-        #print("Sofa")
         elemQuestion1 = self.driver.find_element_by_id("question")
         elemButton = self.driver.find_element_by_id("ContinueButton")
         elemButton.click()
+        delay =3
+        WebDriverWait(self.driver, delay).until(EC.presence_of_element_located((By.ID, 'question2')))
+        #self.driver.implicitly_wait(60)
         elemQuestion2 = self.driver.find_element_by_id("question")
-        self.assertNotEqual(elemQuestion1,elemQuestion2,"The question should change.")
+        self.assertNotEqual(elemQuestion1,elemQuestion2,"The question should be changed.")
 
     def test_DifferentAnswers(self):        
         flag = False
@@ -55,19 +67,10 @@ class TestClass(unittest.TestCase):
     def test_PressInCorrectUnswerContinueButtonNotAppear(self):
         pass
     
-    #def test_PressContinueMoveToNextQuestion(self):
-        #pass
+    
     
     #def test_CorrectUnswerAppear(self):
         #pass
-
-        
-         
-
-
-
-  
-
 
     #def tearDown(self):
         

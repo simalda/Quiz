@@ -1,4 +1,4 @@
-from AppConfigKeys import AppConfigKeys
+import AppConfigKeys
 from BrowserTypes import BrowserTypes
 
 class AppConfigReader(object):

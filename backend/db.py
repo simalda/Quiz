@@ -2,13 +2,15 @@ import pyodbc
 import random 
 
 class SQL(object):
-    def __init__(self):
+    def __init__(self, numberOfQuestions = 0):
         server = 'sofadb.database.windows.net'
         database = 'sofadatabase'
         username = 'sofa'
         password = 'MyDatabasePassword1'
         driver= '{ODBC Driver 17 for SQL Server}'
         self.cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password+'; MARS_Connection=Yes')
+        self.numberOfQuestions = numberOfQuestions
+
 
     def SelectQuestionTable(self):
         cursor = self.cnxn.cursor()
@@ -28,7 +30,7 @@ class SQL(object):
         cursor.execute("SELECT  Id, Question, CorrectAnswer FROM [dbo].[QuizQuestion]")
         tabl = list()
        
-        numberOfQuestions =2
+        
         row = cursor.fetchone()
         while row:
             fullQuestion = {}             
@@ -45,16 +47,21 @@ class SQL(object):
                 row2 = cursor2.fetchone()
             random.shuffle(answersFromSQL)
             
-            answersFromSQL[:numberOfQuestions]
+            print(answersFromSQL)
+            answersFromSQL[:2]
+            print(answersFromSQL)
             answersFromSQL.append(str(row[2]))
             random.shuffle(answersFromSQL)  
             fullQuestion['answer1'] = str(answersFromSQL[0])
             fullQuestion['answer2'] = str(answersFromSQL[1])
-            #fullQuestion['answer3'] = str(answersFromSQL[2])
-            fullQuestion['answer4'] = str(answersFromSQL[2])
+            fullQuestion['answer3'] = str(answersFromSQL[2])
+            fullQuestion['answer4'] = str(answersFromSQL[3])
+
             tabl.append(fullQuestion)
             print (str(row[0]) + " " + str(row[1]))
             row = cursor.fetchone()
+        random.shuffle(tabl)  
+        tabl[:self.numberOfQuestions-1]
         return tabl
 
         #  def SelectQuestionsforQuiz(self):

@@ -1,7 +1,7 @@
 import threading
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from AppConfigKeys import AppConfigKey
+import AppConfigKeys
 from AppConfigReader import AppConfigReader
 from BrowserTypes import BrowserTypes
 
@@ -18,19 +18,19 @@ class Browser:
         driver_id = AppConfigReader.GetBrowser()
 
         def get_driver():
-            if BrowserTypes.Phantom == driver_id:
+            if "Phantom" == driver_id:
                 driver = webdriver.PhantomJS()
 
-            elif BrowserTypes.Chrome == driver_id:
+            elif "Chrome" == driver_id:
                 driver = webdriver.Chrome()
 
-            elif BrowserTypes.Firefox == driver_id:
+            elif "Firefox" == driver_id:
                 driver = webdriver.Firefox()
 
-            elif BrowserTypes.Opera == driver_id:
+            elif  "Opera" == driver_id:
                 driver = webdriver.Opera()
 
-            elif BrowserTypes.IExplorer == driver_id:
+            elif "IExplorer" == driver_id:
                 driver = webdriver.Ie()
             else:
                 raise Exception("There is no support for driver_id: {}".format(driver_id))

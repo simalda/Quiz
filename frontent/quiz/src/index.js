@@ -17,6 +17,7 @@ import MainPage from "./components/MainPage";
 import AnswerOptions from "./components/AnswerOptions";
 import QuizStep from "./components/QuizStep";
 import ResultPage from "./components/ResultPage";
+import ChoseNUmberOfQuestions from "./components/ChoseNUmberOfQuestions";
 
 // function getQuestions(Subject = "") {
 //   fetch("http://127.0.0.1:5000/selectQuestions")
@@ -58,28 +59,7 @@ class App extends React.Component {
       }
     ];
 
-    // this.staticQuiz = [
-    //   {
-    //     question: "q1",
-
-    //     answer: ["a11", "a12", "a13", "a14"]
-    //   },
-    //   {
-    //     question: "q2",
-
-    //     answer: ["a21", "a22", "a23"]
-    //   },
-    //   {
-    //     question: "q3",
-
-    //     answer: ["a31", "a32", "a33", "a34"]
-    //   },
-    //   {
-    //     question: "a",
-
-    //     answer: ["b", "n", "c", "d", "x"]
-    //   }
-    // ];
+    
     this.state = {
       page: 1,
       quiz: [],
@@ -89,7 +69,7 @@ class App extends React.Component {
       answerOptions: undefined,
       selectedAnswer: "",
       quiz2: undefined,
-      numberOfQuestions: 2,
+      numberOfQuestions: 0,
       numberOfCurrentQuestion: 0,
       numberOfCorrectAnswers: 0
     };
@@ -100,6 +80,19 @@ class App extends React.Component {
       .then(response => response.json())
       .then(x);
   }
+
+  // getQuestions(x) {
+  //   fetch("http://127.0.0.1:5000/selectQuestions", {
+  //     method: 'POST',
+  //     headers: new Headers({
+  //                'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
+  //                   }),
+  //           body:     JSON.stringify({
+  //                     firstParam: "6"                      
+  //                   }),// <-- Post parameters
+  //   }).then(response => response.json())
+  //     .then(x);
+  // }
 
   getTurnData(quiz) {
     const allAnswerOptions = quiz.reduce(function(p, c, i) {
@@ -133,21 +126,33 @@ class App extends React.Component {
   }
 
   onLanguageSelected(lang) {
+    this.setState({
+      ...this.state,
+      page: 3});
+    }
+
+
+  onNUmberOfQuestionsSelected(){ 
     var turnData;
     this.getQuestions(quizData => {
       var turnDataArray = [...Array(10).keys()].map(() =>
         this.getTurnData(quizData)
       );
-
+      console.log("quizData")
+      console.log(quizData)
+      console.log("sturnDataArray")
+      console.log(turnDataArray)
+       
       this.setState({
         ...this.state,
         page: 0,
+        numberOfQuestions: 6,
         quiz: quizData,
         question: quizData[this.state.numberOfCurrentQuestion].question,
         correctAnswer:
-          quizData[this.state.numberOfCurrentQuestion].correctAnswer,
+        quizData[this.state.numberOfCurrentQuestion].correctAnswer,
         answerOptions:
-          quizData[this.state.numberOfCurrentQuestion].answerOptions,
+        quizData[this.state.numberOfCurrentQuestion].answerOptions,
         numberOfCurrentQuestion: this.state.numberOfCurrentQuestion + 1
       });
     });
@@ -207,7 +212,18 @@ class App extends React.Component {
           <div className="col-lg-3"></div>
         </div>
       );
-    } else if (this.state.page === 0) {
+    } 
+    else if (this.state.page === 3) {
+      body = (
+        <div className="row">
+          <div className="col-lg-3"></div>
+          <div className="col-lg-6">
+            <ChoseNUmberOfQuestions onNUmberOfQuestionsSelected={() => this.onNUmberOfQuestionsSelected()} />
+          </div>
+          <div className="col-lg-3"></div>
+        </div>
+      );
+    }else if (this.state.page === 0) {
       body = (
         <div>
           <div className="row">
@@ -245,7 +261,7 @@ class App extends React.Component {
             <div className="col-lg-9"></div>
             <div className="col-lg-1">
               {" "}
-              {/* //<ContinueButton nextTurn={() => this.continueButtonClicked()} /> */}
+              {}
             </div>
             <div className="col-lg-2"></div>
           </div>

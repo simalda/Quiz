@@ -34,23 +34,11 @@ class QuizStep extends React.Component {
   }
 
   render() {
-    // correctAnswer = (
-    //   <AnswerOptions
-    //     title={title}
-    //     key={title}
-    //     highlight={this.props.highlight}
-    //     onClick={x => {
-    //       this.props.isClicked === 0
-    //         ? this.props.onAnswerSelected(x)
-    //         : this.pass();
-    //     }}
-    //   />
-    // );
-   
+      
     return (
       <div className="row turn">
         <div className="col-4 offset-1 answer">
-          <h1 id="question">{this.props.question}</h1>
+                    <h1 id={"question"+this.props.numberOfCurrentQuestion}>{this.props.question}</h1>
         </div>
         <div className="col-6">
           {this.props.answerOptions.map(title =>
@@ -63,5 +51,4 @@ class QuizStep extends React.Component {
 }
 
 export default QuizStep;
-//({ answerOptions, correctAnswer, question, highlight, onAnswerSelected })
-// props.onSubmit(props.inputText)
+ 

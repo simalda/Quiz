@@ -26,22 +26,36 @@ def question_profile(id):
 
 @app.route('/selectQuestions')
 def get_questions():
-    sqlQuery =  SQL()
+    numOfQuestoins = 6
+    sqlQuery =  SQL(numOfQuestoins)
     innerInfo = sqlQuery.SelectQuestionsforQuiz()
-    questionInfo  = [
-      {
-        "question": innerInfo[0]['question'],
-        "correctAnswer": innerInfo[0]['correctAnswer'],
-        "answerOptions": [innerInfo[0]['answer1'],innerInfo[0]['answer2'],innerInfo[0]['answer4'] ]
-      },
-      {
-        "question": innerInfo[1]['question'],
-        "correctAnswer": innerInfo[1]['correctAnswer'],
-        "answerOptions": [innerInfo[1]['answer1'],innerInfo[1]['answer2'],innerInfo[1]['answer4'] ]
+    questionInfo  = []
+    for c in range(numOfQuestoins):
+        newObj =  {
+        "question": innerInfo[c]['question'],
+        "correctAnswer": innerInfo[c]['correctAnswer'],
+        "answerOptions": [innerInfo[c]['answer1'], innerInfo[c]['answer2'], innerInfo[c]['answer3'], innerInfo[c]['answer4'] ]
       }
-         
-    ]
+        questionInfo.append(newObj)
     return jsonify(questionInfo)
+
+
+# @app.route('/selectQuestions', methods =['POST'])
+# def get_questions():
+#     numOfQuestoins = int(request.args.get('numOfQuestoins'))
+#     sqlQuery =  SQL()
+#     innerInfo = sqlQuery.SelectQuestionsforQuiz()
+    
+#     questionInfo  = []
+#     for c in range(numOfQuestoins):
+#         newObj =  {
+#         "question": innerInfo[c]['question'],
+#         "correctAnswer": innerInfo[c]['correctAnswer'],
+#         "answerOptions": [innerInfo[c]['answer1'], innerInfo[c]['answer2'], innerInfo[c]['answer3'], innerInfo[c]['answer4'] ]
+#       }
+#         questionInfo.append(newObj)
+#     return jsonify(questionInfo)
+
 
 
 # @app.route('/selectQuestions')
