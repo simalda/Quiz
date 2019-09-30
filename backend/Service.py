@@ -24,13 +24,12 @@ def before_request():
 def question_profile(id):
     return "Profile page of question #{}".format(id)
 
-@app.route('/selectQuestions')
-def get_questions():
-    numOfQuestoins = 6
-    sqlQuery =  SQL(numOfQuestoins)
-    innerInfo = sqlQuery.SelectQuestionsforQuiz()
+@app.route('/selectQuestions/<lang>/<numOfQuestoins>')
+def get_questions(lang, numOfQuestoins):
+    sqlQuery =  SQL()
+    innerInfo = sqlQuery.SelectQuestionsforQuiz(lang, numOfQuestoins)
     questionInfo  = []
-    for c in range(numOfQuestoins):
+    for c in  range(int(numOfQuestoins)):
         newObj =  {
         "question": innerInfo[c]['question'],
         "correctAnswer": innerInfo[c]['correctAnswer'],

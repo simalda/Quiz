@@ -25,9 +25,9 @@ class SQL(object):
         
         return tabl
 
-    def SelectQuestionsforQuiz(self):
+    def SelectQuestionsforQuiz(self, lang, numberOfQuestions):
         cursor = self.cnxn.cursor()
-        cursor.execute("SELECT  Id, Question, CorrectAnswer FROM [dbo].[QuizQuestion]")
+        cursor.execute("SELECT  Id, Question, CorrectAnswer FROM [dbo].[QuizQuestion] WHERE Lang = \'" + lang+"\'")
         tabl = list()
        
         
@@ -48,7 +48,7 @@ class SQL(object):
             random.shuffle(answersFromSQL)
             
             print(answersFromSQL)
-            answersFromSQL[:2]
+            answersFromSQL = answersFromSQL[:3]
             print(answersFromSQL)
             answersFromSQL.append(str(row[2]))
             random.shuffle(answersFromSQL)  
@@ -61,7 +61,7 @@ class SQL(object):
             print (str(row[0]) + " " + str(row[1]))
             row = cursor.fetchone()
         random.shuffle(tabl)  
-        tabl[:self.numberOfQuestions-1]
+        tabl = tabl[:int(numberOfQuestions)]
         return tabl
 
         #  def SelectQuestionsforQuiz(self):

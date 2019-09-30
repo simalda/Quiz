@@ -30,7 +30,7 @@ import ChoseNUmberOfQuestions from "./components/ChoseNUmberOfQuestions";
 //     });
 // };
 
-const quiz = 3; //getQuestions()
+ 
 
 class App extends React.Component {
   constructor(props) {
@@ -62,6 +62,7 @@ class App extends React.Component {
     
     this.state = {
       page: 1,
+      lang: "",
       quiz: [],
       isAnswerSelected: 0,
       question: undefined,
@@ -75,26 +76,19 @@ class App extends React.Component {
     };
   }
 
-  getQuestions(x) {
-    fetch("http://127.0.0.1:5000/selectQuestions")
-      .then(response => response.json())
-      .then(x);
-  }
-
   // getQuestions(x) {
-  //   fetch("http://127.0.0.1:5000/selectQuestions", {
-  //     method: 'POST',
-  //     headers: new Headers({
-  //                'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
-  //                   }),
-  //           body:     JSON.stringify({
-  //                     firstParam: "6"                      
-  //                   }),// <-- Post parameters
-  //   }).then(response => response.json())
+  //   fetch("http://127.0.0.1:5000/selectQuestions")
+  //     .then(response => response.json())
   //     .then(x);
   // }
 
-  getTurnData(quiz) {
+  getQuestions(lang, numberOfQuestions) {
+    return fetch(`http://127.0.0.1:5000/selectQuestions/${lang}/${numberOfQuestions}`, {
+      
+    }).then(response => response.json())
+  }
+
+  prepareQuiz(quiz) {
     const allAnswerOptions = quiz.reduce(function(p, c, i) {
       return p.concat(c.answer);
     }, []);
@@ -128,15 +122,15 @@ class App extends React.Component {
   onLanguageSelected(lang) {
     this.setState({
       ...this.state,
+      lang: lang,
       page: 3});
     }
 
 
-  onNUmberOfQuestionsSelected(){ 
-    var turnData;
-    this.getQuestions(quizData => {
-      var turnDataArray = [...Array(10).keys()].map(() =>
-        this.getTurnData(quizData)
+  onNUmberOfQuestionsSelected(lang, numberOfQuestions){ 
+     this.getQuestions(lang, numberOfQuestions).then(quizData => {
+      var turnDataArray = [...Array(numberOfQuestions).keys()].map(() =>
+        this.prepareQuiz(quizData)
       );
       console.log("quizData")
       console.log(quizData)
@@ -146,7 +140,7 @@ class App extends React.Component {
       this.setState({
         ...this.state,
         page: 0,
-        numberOfQuestions: 6,
+        numberOfQuestions: numberOfQuestions,
         quiz: quizData,
         question: quizData[this.state.numberOfCurrentQuestion].question,
         correctAnswer:
@@ -162,7 +156,7 @@ class App extends React.Component {
   //   var turnData;
   //   var i
   //   for(i=0; i<10;  i++){
-  //       this.state.quiz[i] =this.getTurnData( this.staticQuiz )
+  //       this.state.quiz[i] =this.prepareQuiz( this.staticQuiz )
   //   }
 
   //     this.setState({
@@ -177,14 +171,15 @@ class App extends React.Component {
 
   // }
 
-  continueButtonClicked() {
-    if (this.state.numberOfQuestions === this.state.numberOfCurrentQuestion) {
-      this.setState({
-        ...this.state,
-        page: 2
-      });
-    } else {
-      this.setState({
+  continueButtonClicked() {    
+    if(this.state.isAnswerSelected == 1){
+      if (parseInt(this.state.numberOfQuestions, 10) === this.state.numberOfCurrentQuestion) {
+        this.setState({
+          ...this.state,
+          page: 2
+        });
+        } else {
+        this.setState({
         ...this.state,
         isAnswerSelected: 0,
         question: this.state.quiz[this.state.numberOfCurrentQuestion].question,
@@ -197,8 +192,15 @@ class App extends React.Component {
       });
     }
   }
+  else{
+    this.setState({
+      ...this.state,
+      page: 0
+    });
+  }
+  }
 
-  prepareQuiz() {}
+  
 
   render() {
     var body;
@@ -210,6 +212,15 @@ class App extends React.Component {
             <MainPage onLanguageSelected={x => this.onLanguageSelected(x)} />
           </div>
           <div className="col-lg-3"></div>
+          <div className="row">
+          <div className="col-lg-12">
+            <p>
+              <Link id="addQuestion" to="/add">
+                Add a question
+              </Link>
+            </p>
+          </div>
+        </div>
         </div>
       );
     } 
@@ -218,7 +229,8 @@ class App extends React.Component {
         <div className="row">
           <div className="col-lg-3"></div>
           <div className="col-lg-6">
-            <ChoseNUmberOfQuestions onNUmberOfQuestionsSelected={() => this.onNUmberOfQuestionsSelected()} />
+            <ChoseNUmberOfQuestions onNUmberOfQuestionsSelected={(x,y) => this.onNUmberOfQuestionsSelected(x,y)} 
+            {...this.state} />
           </div>
           <div className="col-lg-3"></div>
         </div>
@@ -273,36 +285,25 @@ class App extends React.Component {
         <div className="row">
           <div className="col-lg-12">
             <NavBar />
-            <Header page={this.state.page} />
+            <Header page={this.state.page} lang = { this.state.lang} />
           </div>
         </div>
 
         {body}
 
-        <div className="row">
-          <div className="col-lg-12">
-            <p>
-              <Link id="addQuestion" to="/add">
-                Add a question
-              </Link>
-            </p>
-          </div>
-        </div>
+        
       </div>
     );
   }
 }
 
-function AuthorWrapper() {
-  return <AddAuthorForm onAddAuthor={console.log} />;
-}
 
 function render() {
   ReactDOM.render(
     <BrowserRouter>
       <React.Fragment>
         <Route exact path="/" component={App} />
-        <Route path="/add" component={AuthorWrapper} />
+{/* <Route path="/add" component={AuthorWrapper} /> */}
       </React.Fragment>
     </BrowserRouter>,
     document.getElementById("root")

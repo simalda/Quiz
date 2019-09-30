@@ -10,8 +10,8 @@ class ResultPage extends React.Component {
     this.props.numberOfCorrectAnswers
     percentage = (this.props.numberOfCorrectAnswers*100)/this.props.numberOfQuestions
   render(){return (
-    <div>
-    <div> Result Page </div>
+    <div className="answer">
+    <h3> Result  </h3>
     <div>Your result is {this.percentage} %: number of correct answers -- {this.props.numberOfCorrectAnswers}, 
     number of inccorect answers -- {this.incorrectAnswers}</div>
     </div>
