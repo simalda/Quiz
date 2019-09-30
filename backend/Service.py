@@ -33,7 +33,8 @@ def get_questions(lang, numOfQuestoins):
         newObj =  {
         "question": innerInfo[c]['question'],
         "correctAnswer": innerInfo[c]['correctAnswer'],
-        "answerOptions": [innerInfo[c]['answer1'], innerInfo[c]['answer2'], innerInfo[c]['answer3'], innerInfo[c]['answer4'] ]
+        "answerOptions": [innerInfo[c]['answer1'], innerInfo[c]['answer2'], innerInfo[c]['answer3'], innerInfo[c]['answer4'] ],
+        "chosenAnswer" : ""
       }
         questionInfo.append(newObj)
     return jsonify(questionInfo)

@@ -35,30 +35,6 @@ import ChoseNUmberOfQuestions from "./components/ChoseNUmberOfQuestions";
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.staticQuiz = [
-      {
-        question: "q1",
-        correctAnswer: "ansq1",
-        answerOptions: ["a11", "a12", "a13", "a14"]
-      },
-      {
-        question: "q2",
-        correctAnswer: "ansq2",
-        answerOptions: ["a21", "a22", "a23"]
-      },
-      {
-        question: "q3",
-        correctAnswer: "ansq3",
-        answerOptions: ["a31", "a32", "a33", "a34", "a35", "a36"]
-      },
-      {
-        question: "a",
-        correctAnswer: "ansq4",
-        answerOptions: ["b", "n", "c", "d", "x"]
-      }
-    ];
-
     
     this.state = {
       page: 1,
@@ -106,7 +82,9 @@ class App extends React.Component {
   }
 
   onAnswerSelected(kAnswer) {
+      
     if (this.state.isAnswerSelected === 0) {
+      this.state.quiz[this.state.numberOfCurrentQuestion-1].chosenAnswer = kAnswer
     this.setState({
         ...this.state,
         numberOfCorrectAnswers:
@@ -115,6 +93,7 @@ class App extends React.Component {
             : this.state.numberOfCorrectAnswers,
         isAnswerSelected: 1,
         selectedAnswer: kAnswer
+     
       });
     }
   }
