@@ -6,6 +6,8 @@ While redoing the same quiz questions will change ( in contrast to all quizes I 
 # Getting Started
 Create folder on your computer install git and pull from git.
 
+Install python3, nodejs  and npm if needed
+
 
 
  
