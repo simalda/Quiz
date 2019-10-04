@@ -5,10 +5,17 @@ While redoing the same quiz questions will change ( in contrast to all quizes I 
 
 # Getting Started
 Create folder on your computer install git and pull from git.
+git creat new folder named Quiz
 
-Install python3, nodejs  and npm if needed
+Install python3 with Flask module, nodejs  and npm if needed
 
+install packages: ../Quiz/frontend/quiz# npm install
 
+go to ../Quiz/frontend/quiz/src
+and run npm start
+
+go to ../Quiz/backend
+py3 ./Service.py
 
  
 
