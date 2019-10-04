@@ -4,21 +4,34 @@ User can chose the number of questions in quiz.
 While redoing the same quiz questions will change ( in contrast to all quizes I did)
 
 # Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Create folder on your computer install git and pull from git.
 
-# Prerequisites
-What things you need to install the software and how to install them
+
+
+ 
 
 ## Installing
-A step by step series of examples that tell you how to get a development env running
+#### git
+```
+install git on ubuntu: https://linuxize.com/post/how-to-install-git-on-ubuntu-18-04/
+clone repository: https://help.github.com/en/articles/cloning-a-repository
+```
 
-Say what the step will be
+#### python 
+```
+you need pip and python3 installed
+additional packajes for python: flask
+```
 
-Give the example
-And repeat
-
-until finished
-End with an example of getting some data out of the system or using it for a little demo
+#### node
+```
+node and npm installed
+windows - https://wsvincent.com/install-node-js-npm-windows/
+ubuntu - https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/
+ 
+ if react install is needed -
+( https://makandracards.com/reactjs-quick/52419-install-reactjs-windows )
+```
 
 # Running the tests
 
