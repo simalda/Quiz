@@ -29,14 +29,14 @@ def get_questions(lang, numOfQuestoins):
     sqlQuery =  SQL()
     innerInfo = sqlQuery.SelectQuestionsforQuiz(lang, numOfQuestoins)
     questionInfo  = []
-    for c in  range(int(numOfQuestoins)):
-        newObj =  {
-        "question": innerInfo[c]['question'],
-        "correctAnswer": innerInfo[c]['correctAnswer'],
-        "answerOptions": [innerInfo[c]['answer1'], innerInfo[c]['answer2'], innerInfo[c]['answer3'], innerInfo[c]['answer4'] ],
+    for c in  innerInfo:
+        singleQuestion =  {
+        "question": c['question'],
+        "correctAnswer": c['correctAnswer'],
+        "answerOptions": [c['answer1'], c['answer2'], c['answer3'], c['answer4'] ],
         "chosenAnswer" : ""
       }
-        questionInfo.append(newObj)
+        questionInfo.append(singleQuestion)
     return jsonify(questionInfo)
 
 
