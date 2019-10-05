@@ -13,7 +13,9 @@ function Header({page, lang}){
     <p>Results:  you can see you current and previous results on this page.</p></div>  }
   else if(page === 3){
       message =  <div><h1>{lang} Quiz - Chose Number of Questions</h1></div>  }
-
+  else  if(page === -1){ 
+    message = <h1> Login page</h1>
+  }
     return(
       <div className = "row">
       <div className="jumbotron col-10 offset-1">

@@ -18,6 +18,7 @@ import AnswerOptions from "./components/AnswerOptions";
 import QuizStep from "./components/QuizStep";
 import ResultPage from "./components/ResultPage";
 import ChoseNUmberOfQuestions from "./components/ChoseNUmberOfQuestions";
+import LogInPage from "./components/LogInPage";
 
 // function getQuestions(Subject = "") {
 //   fetch("http://127.0.0.1:5000/selectQuestions")
@@ -37,7 +38,7 @@ class App extends React.Component {
     super(props);
     
     this.state = {
-      page: 1,
+      page: -1,
       lang: "",
       quiz: [],
       isAnswerSelected: 0,
@@ -151,7 +152,7 @@ class App extends React.Component {
   // }
 
   continueButtonClicked() {    
-    if(this.state.isAnswerSelected == 1){
+    if(this.state.isAnswerSelected === 1){
       if (parseInt(this.state.numberOfQuestions, 10) === this.state.numberOfCurrentQuestion) {
         this.setState({
           ...this.state,
@@ -183,7 +184,22 @@ class App extends React.Component {
 
   render() {
     var body;
-    if (this.state.page === 1) {
+    if (this.state.page === -1) {
+      body = (
+        <div className="row">
+          <div className="col-lg-3"></div>
+          <div className="col-lg-6">
+            <LogInPage onLoginSelected={x => this.onLanguageSelected(x)} />
+          </div>
+          <div className="col-lg-3"></div>
+          <div className="row">
+          <div className="col-lg-12">
+                     </div>
+        </div>
+        </div>
+      );
+    } 
+    else if (this.state.page === 1) {
       body = (
         <div className="row">
           <div className="col-lg-3"></div>
