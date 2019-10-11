@@ -132,24 +132,13 @@ class App extends React.Component {
     });
   }
 
-  // onLanguageSelected(lang) {
-  //   var turnData;
-  //   var i
-  //   for(i=0; i<10;  i++){
-  //       this.state.quiz[i] =this.prepareQuiz( this.staticQuiz )
-  //   }
+  onLoginSelected(auton) {
+      this.setState({
+        ...this.state,
+        page: 1
+      });
 
-  //     this.setState({
-  //       ...this.state,
-  //       page: 0,
-  //       //quiz: quiz,
-  //       question: this.state.quiz[this.state.currentQuestion].question,
-  //       correctAnswer: this.state.quiz[this.state.currentQuestion].correctAnswer,
-  //       answerOptions: this.state.quiz[this.state.currentQuestion].answerOptions,
-  //       currentQuestion: this.state.currentQuestion + 1
-  //     });
-
-  // }
+  }
 
   continueButtonClicked() {    
     if(this.state.isAnswerSelected === 1){
@@ -187,16 +176,10 @@ class App extends React.Component {
     if (this.state.page === -1) {
       body = (
         <div className="row">
-          <div className="col-lg-3"></div>
-          <div className="col-lg-6">
-            <LogInPage onLoginSelected={x => this.onLanguageSelected(x)} />
+              <div className="col-lg-12">
+            <LogInPage onLoginSelected={x => this.onLoginSelected(x)} />
           </div>
-          <div className="col-lg-3"></div>
-          <div className="row">
-          <div className="col-lg-12">
-                     </div>
-        </div>
-        </div>
+              </div>
       );
     } 
     else if (this.state.page === 1) {
@@ -279,8 +262,8 @@ class App extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-12">
-            <NavBar />
-            <Header page={this.state.page} lang = { this.state.lang} />
+            <NavBar {...this.state} onLanguageSelected={x => this.onLanguageSelected(x)}/>
+            {/* <Header page={this.state.page} lang = { this.state.lang} /> */}
           </div>
         </div>
 

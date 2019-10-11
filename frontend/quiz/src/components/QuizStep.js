@@ -7,14 +7,6 @@ class QuizStep extends React.Component {
     super(props);
   }
 
-//   getHighlightColor(highlight) {
-//     const mapping = {
-//       none: undefined,
-//       correct: "green",
-//       wrong: "red"
-//     };
-//     return mapping[highlight];
-//   }
 
   renderAnswer(title) {
     return (

@@ -18,7 +18,6 @@ class ChoseNUmberOfQuestions extends React.Component {
       <div>
         <div className={clasname}>
           <div>How many questions do you want in your questionary?</div>
-
           <input id="numberOfQuestionsInput" type="text" name="numberOfQuestions" />
           <button onClick={() => this.handlesubmit(this.props.onNUmberOfQuestionsSelected)}>
             Submit

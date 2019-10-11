@@ -1,3 +1,51 @@
+.top{
+  margin-top:30px;
+}
+.facebook{
+  background-color:#4267b2;
+  width: 20%;
+  height:65px;
+  color:white;
+  font-size: 20px;
+  text-align: center;
+  margin: auto;
+  border-radius: 5px;
+  margin-top:30px;
+  
+ }
+ .button{  
+  height:65px;
+  color:white;
+  font-size: 20px;
+  text-align: center; 
+  border-radius: 5px;
+  display:table;
+  vertical-align:middle;
+ }
+.login{
+  display:grid;
+  width: 80%;
+  background-color:hsl(140, 46%, 48%);
+   
+}
+.input{
+  width: 80%;
+}
+ 
+span{
+  margin: auto;
+  display: block;
+  
+}
+.text, h3, h4{
+  margin:auto;
+  color:white;
+  margin-bottom:20px;
+}
+
+.image{
+float:left;
+}
 a:focus {
 	outline: none !important;
 }
@@ -19,4 +67,8 @@ a:hover {
 
   .guest{
       margin-right: 6px;
+  }
+
+  .divExt{
+   border-right: solid 5px   rgba(255, 255, 255, 0.5) ;
   }
