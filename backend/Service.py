@@ -8,9 +8,6 @@ CORS(app)
 print(__name__)
 
 
-@app.route('/')
-def index():
-    return 'Hello World'
 
 @app.before_first_request
 def before_first_request():
@@ -23,6 +20,13 @@ def before_request():
 @app.route('/question/<id>/')
 def question_profile(id):
     return "Profile page of question #{}".format(id)
+
+@app.route('/getLanguages')
+def getLanguages():
+    sqlQuery =  SQL()
+    languages = sqlQuery.SelectLanguages()
+    return jsonify(languages)
+
 
 @app.route('/selectQuestions/<lang>/<numOfQuestoins>')
 def get_questions(lang, numOfQuestoins):

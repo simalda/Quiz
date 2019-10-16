@@ -80,5 +80,13 @@ class SQL(object):
         
         # return tabl
 
-
+    def SelectLanguages(self):
+        cursor = self.cnxn.cursor()
+        cursor.execute("SELECT DISTINCT [Lang] FROM [dbo].[QuizQuestion]")
+        lang = list()    
+        
+        row = cursor.fetchone()
+        while row:
+            lang.append(row[0])
+        return lang
   

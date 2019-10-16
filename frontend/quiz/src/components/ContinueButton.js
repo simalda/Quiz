@@ -1,12 +1,21 @@
-import React from 'react'
-import '../index.css';
+import React from "react";
+import "../index.css";
 
 class ContinueButton extends React.Component {
   constructor(props) {
     super(props);
   }
-  render(){
-    return(<button className ="btn3 default" key="button"  id="ContinueButton" onClick = {() =>this.props.nextTurn()} > Continue</button>)
+  render() {
+    return (
+      <button
+        className="btn3 default"
+        key="button"
+        id="ContinueButton"
+        onClick={() => this.props.nextTurn()}
+      >
+       Continue
+      </button>
+    );
   }
 }
 

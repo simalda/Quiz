@@ -1,22 +1,23 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import AnswerOptions from "./AnswerOptions";
+
 
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.languages = ["Python", "React", "SQL"];
-  }
+     this.languages = ["Python", "React", "SQL"];
+    // getLanguages().then(resoponseArray => { this.languages = resoponseArray; });
+     }
 
   handlesubmit(submitter, id) {
     submitter(id);
   }
 
   produceLanguages(languages) {
-    return languages.map(language => (
+    return  languages.map(language => (
       <div
-        key = {language}
+        key={language}
         className="answer"
         onClick={() =>
           this.handlesubmit(this.props.onLanguageSelected, language)

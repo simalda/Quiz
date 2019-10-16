@@ -7,15 +7,6 @@ class QuizStep extends React.Component {
     super(props);
   }
 
-//   getHighlightColor(highlight) {
-//     const mapping = {
-//       none: undefined,
-//       correct: "green",
-//       wrong: "red"
-//     };
-//     return mapping[highlight];
-//   }
-
   renderAnswer(title) {
     return (
       <AnswerOptions
@@ -34,16 +25,15 @@ class QuizStep extends React.Component {
   }
 
   render() {
-      
     return (
       <div className="row turn">
         <div className="col-4 offset-1 answer">
-                    <h1 id={"question"+this.props.numberOfCurrentQuestion}>{this.props.question}</h1>
+          <h1 id={"question" + this.props.numberOfCurrentQuestion}>
+            {this.props.question}
+          </h1>
         </div>
         <div className="col-6">
-          {this.props.answerOptions.map(title =>
-            this.renderAnswer(title)
-          )}
+          {this.props.answerOptions.map(title => this.renderAnswer(title))}
         </div>
       </div>
     );
@@ -51,4 +41,3 @@ class QuizStep extends React.Component {
 }
 
 export default QuizStep;
- 
