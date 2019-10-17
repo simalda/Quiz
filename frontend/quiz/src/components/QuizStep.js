@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import AnswerOptions from "./AnswerOptions";
+import "./QuizStep.css";
+import "./chooseNumberofQuestions.css";
+import ContinueButton from "./ContinueButton";
 
 class QuizStep extends React.Component {
   constructor(props) {
@@ -28,17 +31,25 @@ class QuizStep extends React.Component {
   render() {
       
     return (
-      <div className="row turn">
-        <div className="col-4 offset-1 answer">
-                    <h1 id={"question"+this.props.numberOfCurrentQuestion}>{this.props.question}</h1>
-        </div>
-        <div className="col-6">
-          {this.props.answerOptions.map(title =>
-            this.renderAnswer(title)
-          )}
-        </div>
-      </div>
-    );
+      <div>
+         
+            <div className="row">
+              <div className="col-lg-4"></div>
+              <div className="col-lg-4">  
+                  <div className = "heade">1/12</div>
+                  <div className ="text"><h3 id={"question"+this.props.numberOfCurrentQuestion}>{this.props.question}</h3></div>
+                  <div className="">
+                    {this.props.answerOptions.map(title =>
+                      this.renderAnswer(title)
+                    )}
+                    <ContinueButton nextTurn={() => this.props.continueButtonClicked()} />
+               
+                  </div>
+             </div>
+               <div className="col-lg-4"></div>            
+                         </div>
+          </div>
+                 );
   }
 }
 

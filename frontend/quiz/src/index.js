@@ -4,13 +4,12 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { shuffle, sample } from "underscore";
 import { BrowserRouter, Route } from "react-router-dom";
-import AddAuthorForm from "./AddAuthorForm";
 //import reduce from functools;
 import propTypes from "prop-types"; //???????????????????
 import "./Quiz.css";
 import "./bootstrap.min.css";
 import { Link } from "react-router-dom";
-import ContinueButton from "./components/ContinueButton";
+
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
 import MainPage from "./components/MainPage";
@@ -112,10 +111,9 @@ class App extends React.Component {
       var turnDataArray = [...Array(numberOfQuestions).keys()].map(() =>
         this.prepareQuiz(quizData)
       );
-      console.log("quizData")
+       
       console.log(quizData)
-      console.log("sturnDataArray")
-      console.log(turnDataArray)
+       
        
       this.setState({
         ...this.state,
@@ -210,27 +208,12 @@ class App extends React.Component {
           </div>
             );
     }else if (this.state.page === 0) {
-      body = (
-        <div>
-          <div className="row">
-            <div className="col-lg-1"></div>
-            <div className="col-lg-10">
+      body = (             
               <QuizStep
                 {...this.state}
-                onAnswerSelected={x => this.onAnswerSelected(x)}
-              />
-            </div>
-            <div className="col-lg-1"></div>
-          </div>
-          <div className="row">
-            <div className="col-lg-9"></div>
-            <div className="col-lg-1">
-              {" "}
-              <ContinueButton nextTurn={() => this.continueButtonClicked()} />
-            </div>
-            <div className="col-lg-2"></div>
-          </div>
-        </div>
+                onAnswerSelected={x => this.onAnswerSelected(x)} continueButtonClicked={ ()=> this.continueButtonClicked()}
+              />                     
+       
       );
     } else if (this.state.page === 2) {
       body = (

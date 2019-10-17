@@ -1,6 +1,12 @@
 .top{
   margin-top:30px;
 }
+.top10{
+  margin-top:10px;
+}
+.top20{
+  margin-top:20px;
+}
 .facebook{
   background-color:#4267b2;
   width: 20%;
@@ -25,7 +31,7 @@
 .login{
   display:grid;
   width: 80%;
-  background-color:hsl(140, 46%, 48%);
+  background-color:rgb(66, 178, 103);
    
 }
 .input{

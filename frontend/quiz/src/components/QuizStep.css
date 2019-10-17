@@ -1,0 +1,12 @@
+.answers{
+    display:grid;
+    width: 100%;
+    background-color:rgb(255, 255,255,0.3);
+    
+  }
+  .nextQuestion{
+    font-weight: bold;
+    width: 100%;
+    background-color:rgba(153, 140, 140, 1);
+    
+  }
