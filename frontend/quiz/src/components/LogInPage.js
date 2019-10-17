@@ -52,7 +52,7 @@ class LogInPage extends React.Component {
                 <input  className="input button top" name="username" placeholder="Email"/>
                 <input  className="input button top" name="username" placeholder="Password"/>
                 <div className="login button top">           
-                <span> Login with facebook </span> </div>
+                <span> Login </span> </div>
            </div>
             <div className="col-lg-3">
                 <h3>NEW MEMBER</h3>

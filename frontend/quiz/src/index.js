@@ -205,14 +205,10 @@ class App extends React.Component {
     else if (this.state.page === 3) {
       body = (
         <div className="row">
-          <div className="col-lg-3"></div>
-          <div className="col-lg-6">
-            <ChoseNUmberOfQuestions onNUmberOfQuestionsSelected={(x,y) => this.onNUmberOfQuestionsSelected(x,y)} 
+              <ChoseNUmberOfQuestions onNUmberOfQuestionsSelected={(x,y) => this.onNUmberOfQuestionsSelected(x,y)} 
             {...this.state} />
           </div>
-          <div className="col-lg-3"></div>
-        </div>
-      );
+            );
     }else if (this.state.page === 0) {
       body = (
         <div>

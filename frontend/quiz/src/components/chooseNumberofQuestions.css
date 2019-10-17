@@ -1,0 +1,20 @@
+.startQuiz{
+    display:grid;
+    width: 80%;
+    background-color:hsl(204, 54%, 67%);
+     
+  }
+
+.top2{
+    margin-top:150px;
+}
+.inputNumber{
+         width: 20%;
+         height: 20px;
+}
+
+.heade{
+    margin:auto;
+    color:white;
+    margin-bottom:20px;
+}
