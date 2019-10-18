@@ -43,28 +43,33 @@ class LogInPage extends React.Component {
   render() {
     return (
         <div>            
-        <div className=" col-lg-12 facebook ">           
-          <img className="image" src={facebook}   width="20" height="30"/><span >Login with facebook</span></div> 
-          <div className="row top">
+        <div className = "col-lg-12 facebook">           
+        <span > <img className="image facebookImage" src={facebook}  />Login with facebook</span></div> 
+        <div className="row top">
           <div className="col-lg-3"></div>
-            <div className="col-lg-3 divExt">  
+            <div className="col-lg-3 divExt padr">  
                 <h3>LOGIN</h3>
-                <input  className="input button top" name="username" placeholder="Email"/>
-                <input  className="input button top" name="username" placeholder="Password"/>
-                <div className="login button top">           
-                <span> Login </span> </div>
+                <input  className="button top" name="username" placeholder="Email"/>
+                <input  className="button top below30" name="username" placeholder="Password"/>
+                
            </div>
-            <div className="col-lg-3">
+            <div className="col-lg-3 padl">
                 <h3>NEW MEMBER</h3>
                 <div className="text top">Why to sing in?</div>
-                <div  className="text "><img className="image" src={vi}   width="15" height="30"/>See your history quiz progression</div>
-                <div className="text "><img className="image" src={vi}   width="15" height="30"/>Be the first to know about new quizes</div>
-                <div className="text "> <img className="image" src={vi}   width="15" height="30"/>Add new questions</div>
-                <div className="login button">           
-                <span>Signup</span>  </div>
+                <div  className="text "><img className="image ViImage" src={vi}   />See your history quiz progression</div>
+                <div className="text "><img className="image ViImage" src={vi}   />Be the first to know about new quizes</div>
+                <div className="text "> <img className="image ViImage" src={vi}  />Add new questions</div>
+                
                 </div>
             <div className="col-lg-3"></div>
             </div>
+        <div className="row   ">
+          <div className="col-lg-3"></div>
+          <div className="col-lg-3  padr divExt">
+            <div className="login button ">    Login </div></div>
+          <div className="col-lg-3 padl"><div className="login button">             <span>Signup</span>  </div></div>
+          <div className="col-lg-3"></div>
+          </div>
           </div>
           
     );

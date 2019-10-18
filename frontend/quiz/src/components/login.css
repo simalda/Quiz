@@ -7,30 +7,46 @@
 .top20{
   margin-top:20px;
 }
+
+.below30{
+  margin-bottom:30px;
+}
+
+.textNumber{
+  color:white;
+  font-size:20px;
+}
 .facebook{
   background-color:#4267b2;
   width: 20%;
-  height:65px;
+  padding:20px 10px;
   color:white;
   font-size: 20px;
   text-align: center;
   margin: auto;
   border-radius: 5px;
-  margin-top:30px;
-  
+  margin-top:30px;  
+ }
+ .facebookImage{
+   width: 20px;
+   height: 30px;
+ }
+ .ViImage{
+  width: 15px;
+  height: 30px;
  }
  .button{  
-  height:65px;
+  padding:20px 10px;
   color:white;
   font-size: 20px;
   text-align: center; 
   border-radius: 5px;
   display:table;
   vertical-align:middle;
+  width: 100%;
  }
 .login{
-  display:grid;
-  width: 80%;
+  display:grid; 
   background-color:rgb(66, 178, 103);
    
 }
@@ -40,18 +56,19 @@
  
 span{
   margin: auto;
-  display: block;
   
 }
 .text, h3, h4{
   margin:auto;
   color:white;
   margin-bottom:20px;
+  
 }
 
 .image{
 float:left;
 }
+
 a:focus {
 	outline: none !important;
 }
@@ -76,5 +93,21 @@ a:hover {
   }
 
   .divExt{
-   border-right: solid 5px   rgba(255, 255, 255, 0.5) ;
+   border-right: solid 2px   rgba(255, 255, 255, 0.5) ;
+  }
+
+  .padl{
+    padding-left:60px;
+  }
+  .padr{
+    padding-right:60px;
+  }
+
+  .results{
+    background-color: rgba(20, 2, 2, 0.8) ;
+    border-radius: 5px;
+
+  }
+  .font30{
+font-size:30px;
   }

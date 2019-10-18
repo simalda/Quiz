@@ -31,19 +31,17 @@ class QuizStep extends React.Component {
   render() {
       
     return (
-      <div>
-         
+      <div>         
             <div className="row">
               <div className="col-lg-4"></div>
               <div className="col-lg-4">  
-                  <div className = "heade">1/12</div>
+                  <div className = "heade">{this.props.numberOfCurrentQuestion}/{this.props.numberOfQuestions}</div>
                   <div className ="text"><h3 id={"question"+this.props.numberOfCurrentQuestion}>{this.props.question}</h3></div>
                   <div className="">
                     {this.props.answerOptions.map(title =>
                       this.renderAnswer(title)
                     )}
-                    <ContinueButton nextTurn={() => this.props.continueButtonClicked()} />
-               
+                    <ContinueButton nextTurn={() => this.props.continueButtonClicked()} />               
                   </div>
              </div>
                <div className="col-lg-4"></div>            

@@ -218,22 +218,8 @@ class App extends React.Component {
     } else if (this.state.page === 2) {
       body = (
         <div>
-          <div className="row">
-            <div className="col-lg-1"></div>
-            <div className="col-lg-10">
-              <ResultPage {...this.state} />
-               
-            </div>
-            <div className="col-lg-1"></div>
-          </div>
-          <div className="row">
-            <div className="col-lg-9"></div>
-            <div className="col-lg-1">
-              {" "}
-              {}
-            </div>
-            <div className="col-lg-2"></div>
-          </div>
+          <ResultPage {...this.state} />
+          
         </div>
       );
     }
