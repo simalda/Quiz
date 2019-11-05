@@ -1,0 +1,35 @@
+.startQuiz{
+    display:grid;
+    width: 80%;
+    background-color:hsl(204, 54%, 67%);
+    font-weight: bold;
+    margin:auto;
+    
+     
+  }
+
+.top2{
+    margin-top:150px;
+}
+.inputNumber{
+    width: 20%;
+    height: 40px;
+    display: block;
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 30px
+}
+
+.heade{
+    margin:auto;
+    color:white;
+    margin-bottom:20px;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+}
+
+#startQuizButton{
+    width:80%;
+}

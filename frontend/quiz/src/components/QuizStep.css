@@ -1,0 +1,16 @@
+.answers{
+    display:grid;
+    width: 100%;
+    
+    
+  }
+  .notSelected{
+    background-color:rgb(255, 255,255,0.3);
+  }
+
+  .nextQuestion{
+    font-weight: bold;
+    width: 100%;
+    
+    
+  }

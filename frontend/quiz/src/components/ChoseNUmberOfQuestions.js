@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import "./chooseNumberofQuestions.css";
+import "./login.css";
 
 class ChoseNUmberOfQuestions extends React.Component {
   constructor(props) {
@@ -12,27 +14,21 @@ class ChoseNUmberOfQuestions extends React.Component {
   }
 
   render() {
-    var clasname = "answer ";
         return (
-      <div>
-        <div className={clasname}>
-          <div>How many questions do you want in your questionary?</div>
-
-          <input
-            id="numberOfQuestionsInput"
-            type="text"
-            name="numberOfQuestions"
-          />
-          <button
-            onClick={() =>
-              this.handlesubmit(this.props.onNUmberOfQuestionsSelected)
-            }
-          >
-            Submit
-          </button>
-        </div>
+      <div className = "col-lg-12">           
+            <div className="row   top60">
+             <div className="col-lg-5"></div>
+              <div className="col-lg-3">  
+                  <div className = "heade">{this.props.lang}</div>
+                  <div className ="textNumber">How many questions do you want in your quiz?</div>
+                  <input id = "numberOfQuestionsInput" className ="inputNumber" type="text" name="numberOfQuestions" />
+                 <div    className="startQuiz button top" onClick={() => this.handlesubmit(this.props.onNUmberOfQuestionsSelected)}>           
+                  START THE QUIZ</div>
+            </div>
+            <div className="col-lg-5"></div>
+          </div>
       </div>
-    );
+        );
   }
 }
 export default ChoseNUmberOfQuestions;

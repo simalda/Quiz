@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-
+import "./login.css";
+ 
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -17,8 +18,8 @@ class MainPage extends React.Component {
   produceLanguages(languages) {
     return  languages.map(language => (
       <div
-        key={language}
-        className="answer"
+        key = {language}
+        className="button top60 mainPage"
         onClick={() =>
           this.handlesubmit(this.props.onLanguageSelected, language)
         }

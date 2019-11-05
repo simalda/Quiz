@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-image: url("PIC.jpg");
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -39,11 +40,17 @@ code {
 
 /* AnswerOptions*/
 .correct{
-  border: solid 5px  #00e600;
+  background-color:    rgb(66, 178, 103);
 }
 
 .incorrect{
-  border: solid 5px  #ff0055;
+  background-color:    #f56d6d;
 }
 
- 
+.correctBorder{
+border: solid 5px  rgb(66, 178, 103);
+}
+
+.incorrectborder{
+  border: solid 5px  #f56d6d;
+}

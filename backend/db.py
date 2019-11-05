@@ -90,3 +90,32 @@ class SQL(object):
             lang.append(row[0])
         return lang
   
+
+    def checkUser(self, user, password):
+        cursor = self.cnxn.cursor()
+        cursor.execute("SELECT username, password FROM dbo.Persons WHERE username ='" + user + "'")
+        row = cursor.fetchone()
+        if row == None:
+            return 0
+        elif(row[1] != password):
+            return 2
+
+        elif(row[1] == password):
+            return 1
+        
+    def createUser(self,user, password):
+        if(self.checkUser(user,password)!=0):
+            return 2
+        else:
+            cursor = self.cnxn.cursor()
+            sql = "INSERT INTO [dbo].[Persons] ([username]  ,[password]  ) VALUES (?, ?)"
+            val = (user, password)
+            cursor.execute(sql, val)
+            cursor.commit()                
+                
+            
+                # return 3
+            if cursor.rowcount == 0:
+                return 3
+            else:
+                return 0

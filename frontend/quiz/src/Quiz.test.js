@@ -1,32 +1,59 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Quiz from './Quiz';
 import Enzyme, {mount, shallow, render} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import QuizStep from './components/QuizStep';
+import LogInPage from './components/LogInPage';
+// import { shallowToJson } from 'enzyme-to-json';
 Enzyme.configure({ adapter: new Adapter() });
 
 
+
 const state ={
-  turnData:{
+  quiz:[{
     quesion:"a",
-    answer:["c","d","s"]
+    answer:["c","d","s"],
+    correctAnswer: "cor"
   },
-  highlight:'none'
+  {
+    quesion:"ab",
+    answer:["c","d","s"],
+    orrectAnswer: "cor2"
+  }],
+  highlight:'none',
+  page:-1,
+  answerOptions:[]
 }
 
+describe("Enter as a guest switch page", ()=>{
+  test("Enter as a guest switch page"), ()=>{
+except (this.state).toBe(1);
+  }
+});
+
+
+/*------------------------------------------------------------------------------------*/
+describe('Index', () => {
+  it('should render correctly', () => {
+    const output = shallow(
+      <LogInPage   />
+    );
+    expect(shallowToJson(output)).toMatchSnapshot();
+  });
+});
 
 describe("Quiz", () =>{
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Quiz {...state} onAnswerSelected={()=>{}}/>, div);
-  //ReactDOM.unmountComponentAtNode(div);
+  ReactDOM.render(<QuizStep {...state} onAnswerSelected={()=>{}}/>, div);
+  
 });
 });
 
 describe("When no answer has been selected", () =>{
   let wrapper;
   beforeAll(()=> {
-    wrapper = mount(<Quiz {...state} nAnswerSelected={()=>{}}/>);
+    wrapper = mount(<QuizStep {...state} nAnswerSelected={()=>{}}/>);
   });
 
   it('should have no background color', () => {
@@ -37,7 +64,7 @@ describe("When no answer has been selected", () =>{
 describe("When the wrong answer has been selected", () =>{
   let wrapper;
   beforeAll(()=> {
-    wrapper = mount(<Quiz {...(Object.assign({},state,{highlight: 'wrong'}))} nAnswerSelected={()=>{}}/>);
+    wrapper = mount(<QuizStep {...(Object.assign({},state,{highlight: 'wrong'}))} nAnswerSelected={()=>{}}/>);
   });
 
   it('should have red background color', () => {
@@ -48,7 +75,7 @@ describe("When the wrong answer has been selected", () =>{
 describe("When the correct answer has been selected", () =>{
     let wrapper;
     beforeAll(()=> {
-      wrapper = mount(<Quiz {...(Object.assign({},state,{highlight: 'correct'}))} nAnswerSelected={()=>{}}/>);
+      wrapper = mount(<QuizStep {...(Object.assign({},state,{highlight: 'correct'}))} nAnswerSelected={()=>{}}/>);
     });
   
     it('should have red background color', () => {
@@ -61,7 +88,7 @@ describe("When the first answer is selected", () =>{
   const handleAnswersSelecter = jest.fn();
 
   beforeAll(()=> {
-    wrapper = mount(<Quiz {...state} onAnswerSelected={()=>{}}/>);
+    wrapper = mount(<QuizStep {...state} onAnswerSelected={()=>{}}/>);
     wrapper.find.apply('.kAnswer').first().simulate('click');
   });
 
