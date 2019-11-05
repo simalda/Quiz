@@ -40,47 +40,17 @@ code {
 
 /* AnswerOptions*/
 .correct{
-  border: solid 5px  #00e600;
+  background-color:    rgb(66, 178, 103);
 }
 
 .incorrect{
-  border: solid 5px  #ff0055;
+  background-color:    #f56d6d;
 }
 
+.correctBorder{
+border: solid 5px  rgb(66, 178, 103);
+}
 
-
-/* getTurnData(quiz) {
-  const allAnswerOptions = quiz.reduce(function(p, c, i) {
-    return p.concat(c.answer);
-  }, []);
-   const question = sample(quiz);
-  const correctAnswer = question.correctAnswer;
-  const treeRandomOptions = shuffle(question.answerOptions).slice(0, 3);
-  console.log("treeRandomOptions", typeof treeRandomOptions);
-  treeRandomOptions.push(correctAnswer);
-  shuffle(treeRandomOptions)
-  return {
-    question: question,
-    correctAnswer: correctAnswer,
-    answerOptions: treeRandomOptions
-  };
-} */
-
-/* @app.route('/selectQuestions')
-def get_questions():
-    sqlQuery =  SQL()
-    questionInfo = sqlQuery.SelectQuestionsforQuiz()
-    questionInfo  = [
-      {
-        "question": "q24321",
-        "correctAnswer": "ansq1",
-        "answerOptions": ["a11", "a12", "a13", "a14"]
-      },
-      {
-        "question": "q2",
-        "correctAnswer": "ansq2",
-        "answerOptions": ["a21", "a22", "a23"]
-      }
-         
-    ]
-    return jsonify(questionInfo) */
+.incorrectborder{
+  border: solid 5px  #f56d6d;
+}

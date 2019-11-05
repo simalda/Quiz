@@ -24,6 +24,19 @@ def before_request():
 def question_profile(id):
     return "Profile page of question #{}".format(id)
 
+
+@app.route('/login/<user>/<password>')
+def check_user(user, password):
+    sqlQuery =  SQL()     
+    return jsonify(sqlQuery.checkUser(user, password))
+
+@app.route('/signup/<user>/<password>')
+def create_user(user, password):
+    sqlQuery =  SQL()      
+    return jsonify(sqlQuery.createUser(user, password))
+    
+
+
 @app.route('/selectQuestions/<lang>/<numOfQuestoins>')
 def get_questions(lang, numOfQuestoins):
     sqlQuery =  SQL()
@@ -39,65 +52,12 @@ def get_questions(lang, numOfQuestoins):
         questionInfo.append(singleQuestion)
     return jsonify(questionInfo)
 
+ 
 
-# @app.route('/selectQuestions', methods =['POST'])
-# def get_questions():
-#     numOfQuestoins = int(request.args.get('numOfQuestoins'))
-#     sqlQuery =  SQL()
-#     innerInfo = sqlQuery.SelectQuestionsforQuiz()
-    
-#     questionInfo  = []
-#     for c in range(numOfQuestoins):
-#         newObj =  {
-#         "question": innerInfo[c]['question'],
-#         "correctAnswer": innerInfo[c]['correctAnswer'],
-#         "answerOptions": [innerInfo[c]['answer1'], innerInfo[c]['answer2'], innerInfo[c]['answer3'], innerInfo[c]['answer4'] ]
-#       }
-#         questionInfo.append(newObj)
-#     return jsonify(questionInfo)
+ 
 
 
-
-# @app.route('/selectQuestions')
-# def get_questions():
-#     questionInfo  = [
-#       {
-#         "question": "q24321",
-#         "correctAnswer": "ansq1",
-#         "answerOptions": ["a11", "a12", "a13", "a14"]
-#       },
-#       {
-#         "question": "q2",
-#         "correctAnswer": "ansq2",
-#         "answerOptions": ["a21", "a22", "a23"]
-#       }
-         
-#     ]
-#     return jsonify(questionInfo)
-
-
-
-
-
-
-
-# getTurnData(quiz) {
-#     const allAnswerOptions = quiz.reduce(function(p, c, i) {
-#       return p.concat(c.answer);
-#     }, []);
-#      const question = sample(quiz);
-#     const correctAnswer = question.correctAnswer;
-#     const treeRandomOptions = shuffle(question.answerOptions).slice(0, 3);
-#     console.log("treeRandomOptions", typeof treeRandomOptions);
-#     treeRandomOptions.push(correctAnswer);
-#     shuffle(treeRandomOptions)
-#     return {
-#       question: question,
-#       correctAnswer: correctAnswer,
-#       answerOptions: treeRandomOptions
-#     };
-#   }
-
+ 
 
 def validPersonObject(PersonObject):
     if("name" in PersonObject and "surname" in PersonObject and "age" in PersonObject):

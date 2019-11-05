@@ -4,7 +4,6 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { shuffle, sample } from "underscore";
 import { BrowserRouter, Route } from "react-router-dom";
-//import reduce from functools;
 import propTypes from "prop-types"; //???????????????????
 import "./Quiz.css";
 import "./bootstrap.min.css";
@@ -18,17 +17,7 @@ import QuizStep from "./components/QuizStep";
 import ResultPage from "./components/ResultPage";
 import ChoseNUmberOfQuestions from "./components/ChoseNUmberOfQuestions";
 import LogInPage from "./components/LogInPage";
-
-// function getQuestions(Subject = "") {
-//   fetch("http://127.0.0.1:5000/selectQuestions")
-//     .then(function(response) {
-//       return response.json();
-//     })
-//     .then(function(myJson) {
-//       console.log(myJson);
-//       document.getElementById("fulltable").innerText = myJson;
-//     });
-// };
+import modalKinds from "./ModlKind";
 
  
 
@@ -42,26 +31,32 @@ class App extends React.Component {
       quiz: [],
       isAnswerSelected: 0,
       question: undefined,
-      correctAnswer: undefined,
       answerOptions: undefined,
       selectedAnswer: "",
       quiz2: undefined,
       numberOfQuestions: 0,
       numberOfCurrentQuestion: 0,
-      numberOfCorrectAnswers: 0
+      numberOfCorrectAnswers: 0,
+      user: undefined,
+      modal:modalKinds.Nothing,
+      dropdownshow:0
     };
   }
 
-  // getQuestions(x) {
-  //   fetch("http://127.0.0.1:5000/selectQuestions")
-  //     .then(response => response.json())
-  //     .then(x);
-  // }
+  creatUser(user, password){
+    var userEncoded = encodeURIComponent(user);
+    var paswEncoded = encodeURIComponent(password);
+    return fetch(`http://127.0.0.1:5000/signup/${userEncoded}/${paswEncoded}`).then(response => response.json())
+  }
+
+  checkUser(user, password){
+    var userEncoded = encodeURIComponent(user);
+    var paswEncoded = encodeURIComponent(password);
+    return fetch(`http://127.0.0.1:5000/login/${userEncoded}/${paswEncoded}`).then(response => response.json())
+  }
 
   getQuestions(lang, numberOfQuestions) {
-    return fetch(`http://127.0.0.1:5000/selectQuestions/${lang}/${numberOfQuestions}`, {
-      
-    }).then(response => response.json())
+    return fetch(`http://127.0.0.1:5000/selectQuestions/${lang}/${numberOfQuestions}`).then(response => response.json())
   }
 
   prepareQuiz(quiz) {
@@ -81,8 +76,7 @@ class App extends React.Component {
     };
   }
 
-  onAnswerSelected(kAnswer) {
-      
+  onAnswerSelected(kAnswer) {      
     if (this.state.isAnswerSelected === 0) {
       this.state.quiz[this.state.numberOfCurrentQuestion-1].chosenAnswer = kAnswer
     this.setState({
@@ -102,7 +96,10 @@ class App extends React.Component {
     this.setState({
       ...this.state,
       lang: lang,
-      page: 3});
+      page: 3,
+      quiz: [],
+      numberOfCurrentQuestion: 0,
+    isAnswerSelected:0});
     }
 
 
@@ -130,13 +127,41 @@ class App extends React.Component {
     });
   }
 
-  onLoginSelected(auton) {
+  onLoginSelected(user, pasp) {
+    this.checkUser(user, pasp).then(userData => {
+    if (userData === 1)
+    {
       this.setState({
         ...this.state,
-        page: 1
+        page: 1,
+        user: user
       });
 
-  }
+    }
+    else if(userData === 2){
+      this.setState({
+        ...this.state,
+         modal:modalKinds.WrongParameters
+         
+      });
+    }
+    else if(userData === 0){
+      this.setState({
+        ...this.state,
+         modal:modalKinds.WrongParameters
+         
+      });
+    }
+  });
+}
+  
+onEnterAsaGuestSelected(){
+  this.setState({
+    ...this.state,
+    page: 1,
+    user: 'guest'
+  });
+}
 
   continueButtonClicked() {    
     if(this.state.isAnswerSelected === 1){
@@ -167,7 +192,76 @@ class App extends React.Component {
   }
   }
 
-  
+  onSignupSelected(){
+    this.setState({
+      ...this.state,
+       modal:modalKinds.OpenSignup
+       
+    });
+  }
+
+  signUp(name, pass, pass2){
+    let re1 = new RegExp("^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$");
+    if (!name.match(re1)){
+      this.setState({
+        ...this.state,
+    modal:modalKinds.EmailNotValid
+      });
+    }
+    else if(pass!=pass2){
+      this.setState({
+        ...this.state,
+    modal:modalKinds.TwoPassAreNotEqual
+      });
+    }
+    
+    
+     
+    else{
+      this.creatUser(name, pass).then(userData => {
+        if (userData === 0)
+        {
+          this.setState({
+            ...this.state,
+            page: 1,
+            user: userData.user,
+            modal:modalKinds.Nothing
+          });
+        }
+        else if (userData === 2){
+          this.setState({
+            ...this.state,
+            modal:4
+            
+          });
+        }
+        else if (userData === 3){
+          this.setState({
+            ...this.state,
+            modal:5
+            
+          });
+        }
+  });
+}
+  }
+
+
+  closeModal(){
+    this.setState({
+      ...this.state,
+       modal:modalKinds.Nothing
+       
+    });
+  }
+
+  dropdownClicked(){
+    this.setState({
+      ...this.state,
+      dropdownshow:1
+       
+    });
+  }
 
   render() {
     var body;
@@ -175,7 +269,9 @@ class App extends React.Component {
       body = (
         <div className="row">
               <div className="col-lg-12">
-            <LogInPage onLoginSelected={x => this.onLoginSelected(x)} />
+      <LogInPage {...this.state} onLoginSelected={(x,y)  => this.onLoginSelected(x,y)} 
+      closeModal={( )  => this.closeModal ()} onSignupSelected={( )  => this.onSignupSelected ()} 
+      onEnterAsaGuestSelected={()=> this.onEnterAsaGuestSelected()} signUp={(x, y,z) => this.signUp(x, y,z)}/>
           </div>
               </div>
       );
@@ -185,16 +281,12 @@ class App extends React.Component {
         <div className="row">
           <div className="col-lg-3"></div>
           <div className="col-lg-6">
-            <MainPage onLanguageSelected={x => this.onLanguageSelected(x)} />
+            <MainPage {...this.state} onLanguageSelected={x => this.onLanguageSelected(x)} />
           </div>
           <div className="col-lg-3"></div>
           <div className="row">
           <div className="col-lg-12">
-            <p>
-              <Link id="addQuestion" to="/add">
-                Add a question
-              </Link>
-            </p>
+            
           </div>
         </div>
         </div>
@@ -218,7 +310,7 @@ class App extends React.Component {
     } else if (this.state.page === 2) {
       body = (
         <div>
-          <ResultPage {...this.state} />
+          <ResultPage {...this.state} onLanguageSelected={x => this.onLanguageSelected(x)}/>
           
         </div>
       );
@@ -227,7 +319,7 @@ class App extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-12">
-            <NavBar {...this.state} onLanguageSelected={x => this.onLanguageSelected(x)}/>
+            <NavBar {...this.state} onLanguageSelected={x => this.onLanguageSelected(x)} dropdownClicked ={()=> this.dropdownClicked}/>
             {/* <Header page={this.state.page} lang = { this.state.lang} /> */}
           </div>
         </div>
@@ -246,7 +338,7 @@ function render() {
     <BrowserRouter>
       <React.Fragment>
         <Route exact path="/" component={App} />
-{/* <Route path="/add" component={AuthorWrapper} /> */}
+        <Route path="/main" component={MainPage} />
       </React.Fragment>
     </BrowserRouter>,
     document.getElementById("root")

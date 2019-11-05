@@ -6,7 +6,7 @@ import "./login.css";
 import "./QuizStep";
 
 function AnswerOptions({ title, highlight, onClick }) {
-  var clasname =  "top10 answers button  "+ (!!highlight ? highlight : "");
+  var clasname =  "top10 answers button  "+ (!!highlight ? highlight : "notSelected");
 
   return (
     <div id="answer" className={clasname} onClick={() => onClick(title)}>

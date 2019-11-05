@@ -4,6 +4,7 @@
     background-color:hsl(204, 54%, 67%);
     font-weight: bold;
     margin:auto;
+    
      
   }
 
@@ -17,6 +18,7 @@
     margin: auto;
     text-align: center;
     border-radius: 5px;
+    margin-bottom: 30px
 }
 
 .heade{

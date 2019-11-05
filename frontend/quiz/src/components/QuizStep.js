@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import AnswerOptions from "./AnswerOptions";
 import "./QuizStep.css";
+import "../index.css";
 import "./chooseNumberofQuestions.css";
 import ContinueButton from "./ContinueButton";
 
@@ -41,7 +42,7 @@ class QuizStep extends React.Component {
                     {this.props.answerOptions.map(title =>
                       this.renderAnswer(title)
                     )}
-                    <ContinueButton nextTurn={() => this.props.continueButtonClicked()} />               
+                    <ContinueButton isAnswerSelected = {this.props.isAnswerSelected} nextTurn={() => this.props.continueButtonClicked()} />               
                   </div>
              </div>
                <div className="col-lg-4"></div>            

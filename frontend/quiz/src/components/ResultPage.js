@@ -21,9 +21,9 @@ class ResultPage extends React.Component {
       if (
         this.props.quiz[i].correctAnswer === this.props.quiz[i].chosenAnswer
       ) {
-        color = "correct";
+        color = "correctBorder";
       } else {
-        color = "incorrect";
+        color = "incorrectborder";
       }
 
       resultList.push(
@@ -50,8 +50,8 @@ class ResultPage extends React.Component {
               <div className="text ">{resultList.map(item =>
                       item
                     )} </div>
-                <div id="startQuizButton"  className="button startQuiz  top"  >           
-                  START THE QUIZ</div>
+                <div id="startQuizButton"  className="button startQuiz  top"  onClick={(x)=> this.props.onLanguageSelected(this.props.lang)}>           
+                  START NEW QUIZ</div>
               <div className="col-lg-3"></div>
             </div>
           </div>

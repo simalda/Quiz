@@ -17,7 +17,7 @@ class ChoseNUmberOfQuestions extends React.Component {
   render() {
         return (
       <div className = "col-lg-12">           
-            <div className="row   top2">
+            <div className="row   top60">
              <div className="col-lg-5"></div>
               <div className="col-lg-3">  
                   <div className = "heade">{this.props.lang}</div>
