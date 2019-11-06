@@ -47,7 +47,7 @@ class LogInPage extends React.Component {
     return (
       <div>
         <div
-          className="col-lg-12  facebook top60"
+          className="col-lg-12  facebook top60 "
           onClick={() => this.props.onEnterAsaGuestSelected()}
         >
           <span> LOGIN AS GUEST</span>

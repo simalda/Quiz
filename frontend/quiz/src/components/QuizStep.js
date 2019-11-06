@@ -39,7 +39,7 @@ class QuizStep extends React.Component {
                   <div className ="text"><h3 id={"question"+this.props.numberOfCurrentQuestion}>{this.props.question}</h3></div>
                   <div className="">
                     {this.props.answerOptions.map(title =>
-                      this.renderAnswer(title)
+                      this.renderAnswer(title[0])
                     )}
                     <ContinueButton isAnswerSelected = {this.props.isAnswerSelected} nextTurn={() => this.props.continueButtonClicked()} />               
                   </div>

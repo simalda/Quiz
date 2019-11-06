@@ -27,20 +27,20 @@ const state ={
 
 describe("Enter as a guest switch page", ()=>{
   test("Enter as a guest switch page"), ()=>{
-except (this.state).toBe(1);
+except (this.state.page).toBe(1);
   }
 });
 
 
 /*------------------------------------------------------------------------------------*/
-describe('Index', () => {
-  it('should render correctly', () => {
-    const output = shallow(
-      <LogInPage   />
-    );
-    expect(shallowToJson(output)).toMatchSnapshot();
-  });
-});
+// describe('Index', () => {
+//   it('should render correctly', () => {
+//     const output = shallow(
+//       <LogInPage   />
+//     );
+//     expect(shallowToJson(output)).toMatchSnapshot();
+//   });
+// });
 
 describe("Quiz", () =>{
 it('renders without crashing', () => {

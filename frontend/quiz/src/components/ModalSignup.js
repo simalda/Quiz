@@ -18,7 +18,7 @@ class ModalSignup extends React.Component {
 
     render(){
         return  <div id="myModal" className="modal ">
-          <div className="modal-content button" >
+          <div className="modal-content " >
                 <span className="close" onClick={()=> this.props.closeModal( )}>&times;</span>
                 <p>Please enter your email and password</p>
                 <input  className="button top" id="usernameS" type="username" placeholder="Email"/>
