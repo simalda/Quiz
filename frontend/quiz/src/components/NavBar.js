@@ -35,7 +35,7 @@ produceLanguages(languages) {
             <img src={logo} height="40" className="App-logo"  alt=''></img>                 
       </div>
        <div className = "lang">
-       <Link  key = "AboutUs"  className="navbar-text" id="Language" onClick={() => this.handlesubmit(this.props.onNUmberOfQuestionsSelected)}>
+       <Link  key = "AboutUs"  className="navbar-text" id="Language" onClick={() => this.props.AboutUs()}>
    About Us  </Link>
       {this.produceLanguages(this.languages)} </div>
       

@@ -19,6 +19,7 @@ import { getLanguages } from "./BackendProxy";
 
 import LogInPage from "./components/LogInPage";
 import modalKinds from "./ModlKind";
+import pages from "./pages";
 import Stattistics from "./components/Stattistics";
 
 class App extends React.Component {
@@ -26,7 +27,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      page: -1,
+      page: pages.Login,
       lang: "",
       quiz: [],
       isAnswerSelected: 0,
@@ -69,7 +70,6 @@ class App extends React.Component {
 
   addQuiz() {  
     var userEncoded = encodeURIComponent(this.state.user);
-    // let dataToSend = new Array(this.state.user, this.state.quiz)
     fetch(`http://127.0.0.1:5000/stat/${userEncoded}`, {
       method: "POST",
       headers: {
@@ -117,7 +117,7 @@ class App extends React.Component {
     this.setState({
       ...this.state,
       lang: lang,
-      page: 3,
+      page: pages.NumberofQuestions,
       quiz: [],
       numberOfCurrentQuestion: 0,
       isAnswerSelected: 0
@@ -132,7 +132,7 @@ class App extends React.Component {
 
       this.setState({
         ...this.state,
-        page: 0,
+        page: pages.QuizStep,
         numberOfQuestions: numberOfQuestions,
         quiz: quizData,
         question: quizData[this.state.numberOfCurrentQuestion].question,
@@ -150,7 +150,7 @@ class App extends React.Component {
       this.setState({
         ...this.state,
         userStat: statData,
-        page:5
+        page: pages.Statistics5
       });
     });
   }
@@ -160,7 +160,7 @@ class App extends React.Component {
       if (userData === 1) {
         this.setState({
           ...this.state,
-          page: 1,
+          page: pages.Main,
           user: user
         });
       } else if (userData === 2) {
@@ -180,7 +180,7 @@ class App extends React.Component {
   onEnterAsaGuestSelected() {
     this.setState({
       ...this.state,
-      page: 1,
+      page: pages.Main,
       user: "guest"
     });
   }
@@ -192,7 +192,7 @@ class App extends React.Component {
         this.addQuiz()
         this.setState({
           ...this.state,
-          page: 2
+          page: pages.Results
         });
       } else {
         this.setState({
@@ -211,7 +211,7 @@ class App extends React.Component {
     } else {
       this.setState({
         ...this.state,
-        page: 0
+        page: pages.QuizStep
       });
     }
   }
@@ -220,6 +220,13 @@ class App extends React.Component {
     this.setState({
       ...this.state,
       modal: modalKinds.OpenSignup
+    });
+  }
+
+  AboutUs(){
+    this.setState({
+      ...this.state,
+      page: pages.AboutUs
     });
   }
 
@@ -240,7 +247,7 @@ class App extends React.Component {
         if (userData === 0) {
           this.setState({
             ...this.state,
-            page: 1,
+            page: pages.Main,
             user: userData.user,
             modal: modalKinds.Nothing
           });
@@ -268,7 +275,7 @@ class App extends React.Component {
 
   render() {
     var body;
-    if (this.state.page === -1) {
+    if (this.state.page === pages.Login) {
       body = (
         <div className="row">
           <div className="col-lg-12">
@@ -283,7 +290,7 @@ class App extends React.Component {
           </div>
         </div>
       );
-    } else if (this.state.page === 1) {
+    } else if (this.state.page === pages.Main) {
       body = (
         <div className="row">
           <div className="col-lg-3"></div>
@@ -297,7 +304,7 @@ class App extends React.Component {
           
         </div>
       );
-    } else if (this.state.page === 3) {
+    } else if (this.state.page === pages.NumberofQuestions) {
       body = (
         <div className="row">
           <ChoseNUmberOfQuestions
@@ -308,7 +315,7 @@ class App extends React.Component {
           />
         </div>
       );
-    } else if (this.state.page === 0) {
+    } else if (this.state.page === pages.QuizStep) {
       body = (
         <QuizStep
           {...this.state}
@@ -316,7 +323,7 @@ class App extends React.Component {
           continueButtonClicked={() => this.continueButtonClicked()}
         />
       );
-    } else if (this.state.page === 2) {
+    } else if (this.state.page === pages.Results) {
       body = (
         <div>
           <ResultPage
@@ -325,12 +332,23 @@ class App extends React.Component {
           />
         </div>
       );
-    } else if (this.state.page === 5){
+    } else if (this.state.page === pages.Statistics){
       body = (
         <div className="row">
           <div className="col-lg-3"></div>
           <div className="col-lg-6">
            <Stattistics  {...this.state} />
+          </div>
+          <div className="col-lg-3"></div>
+          
+        </div>
+      );
+    } else if (this.state.page === pages.AboutUs){
+      body = (
+        <div className="row">
+          <div className="col-lg-3"></div>
+          <div className="col-lg-6">
+          Owner: Sofya Kamenkovich - Kolodizner
           </div>
           <div className="col-lg-3"></div>
           
@@ -346,6 +364,7 @@ class App extends React.Component {
               onLanguageSelected={x => this.onLanguageSelected(x)}
               dropdownClicked={() => this.dropdownClicked}
               getStat={() => this.getStat()}
+              AboutUs={()=>this.AboutUs()}
             />
           </div>
         </div>
