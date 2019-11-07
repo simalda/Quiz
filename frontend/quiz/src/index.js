@@ -150,7 +150,7 @@ class App extends React.Component {
       this.setState({
         ...this.state,
         userStat: statData,
-        page: pages.Statistics5
+        page: pages.Statistics
       });
     });
   }
