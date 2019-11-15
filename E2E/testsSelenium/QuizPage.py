@@ -9,9 +9,6 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException 
 import sys
 sys.path.append(  r'C:\\Users\\simal\\Desktop\\Python- final-project\\Code\backend\\testsSelenium\\Configurations')
-import AppConfigReader 
-import BrowserManager
-import AppConfigKeys
 class TestClass(unittest.TestCase):
     @classmethod
     def setUpClass(self):
@@ -23,8 +20,7 @@ class TestClass(unittest.TestCase):
     
 
     def setUp(self):        
-        #self.driver.get("http://localhost:3000/")
-        self.driver.get(AppConfigReader.AppConfigReader.GetWebsite())
+        self.driver.get("http://localhost:3000/")
         time.sleep(2)
         elemButton = self.driver.find_element_by_id("Python")
         elemButton.click()

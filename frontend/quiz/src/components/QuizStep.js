@@ -35,7 +35,7 @@ class QuizStep extends React.Component {
             <div className="row">
               <div className="col-lg-4"></div>
               <div className="col-lg-4">  
-                  <div className = "heade">{this.props.numberOfCurrentQuestion}/{this.props.numberOfQuestions}</div>
+                  <div   className = "heade">{this.props.numberOfCurrentQuestion}\{this.props.numberOfQuestions}</div>
                   <div className ="text"><h3 id={"question"+this.props.numberOfCurrentQuestion}>{this.props.question}</h3></div>
                   <div className="">
                     {this.props.answerOptions.map(title =>

@@ -50,7 +50,7 @@ class LogInPage extends React.Component {
           className="col-lg-12  facebook top60 "
           onClick={() => this.props.onEnterAsaGuestSelected()}
         >
-          <span> LOGIN AS GUEST</span>
+          <span id="guest">LOGIN AS GUEST</span>
         </div>
         <div className="row top60">
           <div className="col-lg-3"></div>
@@ -90,17 +90,15 @@ class LogInPage extends React.Component {
         <div className="row   ">
           <div className="col-lg-3"></div>
           <div className="col-lg-3  padr divExt">
-            <div className="login button" onClick={() => this.login()}>
+            <div id="login" className="login button" onClick={() => this.login()}>
               Login
             </div>
           </div>
           <div className="col-lg-3 padl">
-            <div
+            <div id="signup"
               className="login button"
-              onClick={() => this.props.onSignupSelected()}
-              
-            >
-              <span>Signup</span>
+              onClick={() => this.props.onSignupSelected()}      >
+               Signup 
             </div>
           </div>
           <div className="col-lg-3"></div>

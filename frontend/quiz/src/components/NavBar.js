@@ -17,7 +17,7 @@ class NavBar extends React.Component {
 
 produceLanguages(languages) {
   return languages.map(language => (
-   <Link  key = {language}  className="navbar-text" id={language} onClick={() => this.handlesubmit(this.props.onLanguageSelected,language)}>
+   <Link  key = {language}  to = "/chosenumberofquestions" className="navbar-text" id={language} onClick={() => this.handlesubmit(this.props.onLanguageSelected,language)}>
    {language}  </Link>));
 }
 
@@ -25,8 +25,8 @@ produceLanguages(languages) {
      
     let addQuest
     if(this.props.user != 'guest' ){
-        addQuest = (     <div><Link id="addQuestion"  className="navbar-text " >        Add a question        </Link>
-        <Link id="stat" onClick={() => this.props.getStat()}  className="navbar-text " >        Statistics      </Link>
+        addQuest = (     <div><Link id="addQuestion"  className="navbar-text " to ="/addquestion">        Add a question        </Link>
+        <Link id="stat" onClick={() => this.props.getStat()}  className="navbar-text " to = "/statistics">        Statistics      </Link>
         <div className="navbar-text ">     {this.props.user}        </div> </div>)}
        
     return (
@@ -35,8 +35,8 @@ produceLanguages(languages) {
             <img src={logo} height="40" className="App-logo"  alt=''></img>                 
       </div>
        <div className = "lang">
-       <Link  key = "AboutUs"  className="navbar-text" id="Language" onClick={() => this.props.AboutUs()}>
-   About Us  </Link>
+       <Link id="aboutUs" key = "AboutUs"  className="navbar-text"  to = "/aboutus" onClick={() => this.props.AboutUs()}>
+   About Us</Link>
       {this.produceLanguages(this.languages)} </div>
       
          

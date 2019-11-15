@@ -22,7 +22,7 @@ class ChoseNUmberOfQuestions extends React.Component {
                   <div className = "heade">{this.props.lang}</div>
                   <div className ="textNumber">How many questions do you want in your quiz?</div>
                   <input id = "numberOfQuestionsInput" className ="inputNumber" type="text" name="numberOfQuestions" />
-                 <div    className="startQuiz button top" onClick={() => this.handlesubmit(this.props.onNUmberOfQuestionsSelected)}>           
+                 <div  id="startButton"  className="startQuiz button top" onClick={() => this.handlesubmit(this.props.onNUmberOfQuestionsSelected)}>         
                   START THE QUIZ</div>
             </div>
             <div className="col-lg-5"></div>

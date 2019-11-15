@@ -387,7 +387,7 @@ function render() {
     document.getElementById("root")
   );
 }
-render();
+ render();
 
 serviceWorker.unregister();
 //registerServiceWorker();

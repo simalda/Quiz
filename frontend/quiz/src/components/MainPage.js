@@ -8,7 +8,6 @@ class MainPage extends React.Component {
     super(props);
 
      this.languages = ["Python", "React", "SQL"];
-    // getLanguages().then(resoponseArray => { this.languages = resoponseArray; });
      }
 
   handlesubmit(submitter, id) {

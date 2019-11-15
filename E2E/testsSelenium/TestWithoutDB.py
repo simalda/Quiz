@@ -64,13 +64,13 @@ class TestClass(unittest.TestCase):
             
     
 
-    #def setUp(self):        
-        #self.driver.get("http://localhost:3000/")
-        # self.driver.get(AppConfigReader.GetWebsite())
-        # time.sleep(2)
+    def setUp(self):        
+        self.driver.get("http://localhost:3000/")
+        self.driver.get(AppConfigReader.GetWebsite())
+        time.sleep(2)
 
-    # def test_CorrectUnswerAppear(self):
-    #     elemLink = self.driver.find_element_by_id("addQuestion")
-    #     elemLink.click()
-        #bol = self.CheckIfExist("//h1[@id='addQuestion']")
-        #self.assertTrue(bol,"Add question form didn't open")
+    def test_CorrectUnswerAppear(self):
+        elemLink = self.driver.find_element_by_id("addQuestion")
+        elemLink.click()
+        bol = self.CheckIfExist("//h1[@id='addQuestion']")
+        self.assertTrue(bol,"Add question form didn't open")
