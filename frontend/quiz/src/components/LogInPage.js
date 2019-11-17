@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import "./login.css";
-import facebook from "./FACEBOOK.png";
-import vi from "./CHECK.png";
+import vi from "../images/CHECK.png";
 import ModalLogin from "./ModalLogin";
 import ModalSignup from "./ModalSignup";
-import modalKinds from "../ModlKind";
+import modalKinds from "../JS/ModlKind";
 
 class LogInPage extends React.Component {
   constructor(props) {
@@ -73,15 +71,15 @@ class LogInPage extends React.Component {
             <h3>NEW MEMBER</h3>
             <div className="text top">Why to sing in?</div>
             <div className="text ">
-              <img className="image ViImage" src={vi} />
+              <img alt="" className="image ViImage" src={vi} />
               See your history quiz progression
             </div>
             <div className="text ">
-              <img className="image ViImage" src={vi} />
+              <img alt="" className="image ViImage" src={vi} />
               Be the first to know about new quizes
             </div>
             <div className="text ">
-              <img className="image ViImage" src={vi} />
+              <img alt="" className="image ViImage" src={vi} />
               Add new questions
             </div>
           </div>

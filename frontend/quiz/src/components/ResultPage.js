@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import "../index.css";
-import "./login.css";
-import "./chooseNumberofQuestions.css";
+ 
 
 class ResultPage extends React.Component {
   constructor(props) {

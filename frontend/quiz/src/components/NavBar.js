@@ -1,7 +1,7 @@
 import React from 'react'
-import logo from './LOGO.png';
+import logo from '../images/LOGO.png';
 import { Link } from "react-router-dom";
-import "./login.css";
+ 
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ produceLanguages(languages) {
   render() {
      
     let addQuest
-    if(this.props.user != 'guest' ){
+    if(this.props.user !== 'guest' ){
         addQuest = (     <div><Link id="addQuestion"  className="navbar-text " to ="/addquestion">        Add a question        </Link>
         <Link id="stat" onClick={() => this.props.getStat()}  className="navbar-text " to = "/statistics">        Statistics      </Link>
         <div className="navbar-text ">     {this.props.user}        </div> </div>)}

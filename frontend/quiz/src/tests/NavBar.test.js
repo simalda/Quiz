@@ -1,30 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
-import Enzyme, { mount, shallow, render } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Enzyme, {  shallow } from "enzyme";
+import Adapter from "enzyeme-adapter-react-16";
 
-import pages from "../pages";
-import modalKinds from "../ModlKind";
 import NavBar from "../components/NavBar";
 Enzyme.configure({ adapter: new Adapter() });
 
  
-const state ={
-  quiz:[{
-    quesion:"a",
-    answer:["c","d","s"],
-    correctAnswer: "cor"
-  },
-  {
-    quesion:"ab",
-    answer:["c","d","s"],
-    orrectAnswer: "cor2"
-  }],
-  highlight:'none',
-  page:pages.Login,
-  answerOptions:[]
-}
+ 
 
 describe("NavBar", () => {
   let wrapper;

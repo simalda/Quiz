@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import "../index.css";
-import "./chooseNumberofQuestions.css";
-import "./login.css";
+ 
 import "./QuizStep";
 
 function AnswerOptions({ title, highlight, onClick }) {

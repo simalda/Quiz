@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import Enzyme, { mount, shallow, render } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import pages from "../pages";
+import pages from "../JS/pages";
 import MainPage from "../components/MainPage";
 Enzyme.configure({ adapter: new Adapter() });
 

@@ -1,9 +1,6 @@
-import React, { Component } from "react";
+import React  from "react";
 import ReactDOM from "react-dom";
 import AnswerOptions from "./AnswerOptions";
-import "./QuizStep.css";
-import "../index.css";
-import "./chooseNumberofQuestions.css";
 import ContinueButton from "./ContinueButton";
 
 class QuizStep extends React.Component {

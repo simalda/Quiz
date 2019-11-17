@@ -1,5 +1,5 @@
 import React from "react";
-import "./login.css";
+ 
 
 class Stattistics extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class Stattistics extends React.Component {
   }
 correctAn(i){
     let choosen 
-    if (this.props.userStat[i]["ChoosenAnswerId"]==0){
+    if (this.props.userStat[i]["ChoosenAnswerId"]===0){
         choosen = <div>Chosen answer: {this.props.userStat[i]["correctAnswer"]}</div>
    }else{
    choosen = <div>Chosen answer: {this.props.userStat[i]["ChoosenAnswerId"]}</div>}

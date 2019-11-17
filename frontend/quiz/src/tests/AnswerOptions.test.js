@@ -5,8 +5,8 @@ import Enzyme, { mount, shallow, render } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import AnswerOptions from "../components/AnswerOptions";
-import pages from "../pages";
-import modalKinds from "../ModlKind";
+import pages from "../JS/pages";
+import modalKinds from "../JS/ModlKind";
 Enzyme.configure({ adapter: new Adapter() });
 
 const state = {

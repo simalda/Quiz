@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import "./chooseNumberofQuestions.css";
-import "./login.css";
+ 
 
 class ChoseNUmberOfQuestions extends React.Component {
   constructor(props) {

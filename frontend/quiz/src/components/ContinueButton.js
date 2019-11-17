@@ -1,7 +1,5 @@
 import React from "react";
-import "../index.css";
-import "./chooseNumberofQuestions.css";
-import "./login.css";
+ 
 
 class ContinueButton extends React.Component {
   constructor(props) {

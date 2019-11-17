@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Enzyme, { mount, shallow, render } from "enzyme";
+import Enzyme, {   shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import App from "../index";
-import pages from "../pages";
-import modalKinds from "../ModlKind";
+import App from "../components/App";
+import pages from "../JS/pages";
+import modalKinds from "../JS/ModlKind";
 Enzyme.configure({ adapter: new Adapter() });
 
 const state = {
