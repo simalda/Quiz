@@ -1,29 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import "./CSS/bootstrap.min.css";
-import './CSS/index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./CSS/CSS-GRID/main.css";
+//import "./CSS/bootstrap.min.css";
+// import "./CSS/index.css";
 
-import "./CSS/Quiz.css";
-import './CSS/login.css';
+// import "./CSS/Quiz.css";
+// import "./CSS/login.css";
 
+import App from "./components/App";
+import * as serviceWorker from "./serviceWorker";
 
-import App from './components/App';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
+import thunkMiddleware from "redux-thunk";
+import { createLogger } from "redux-logger";
+import { createStore, applyMiddleware } from "redux";
+import { appState } from "./redux/reducers";
 
- 
+const loggerMiddleware = createLogger();
 
-function render(){
-ReactDOM.render(
- (   <BrowserRouter>
-    <React.Fragment>
-      <Route exact path="/" component={App} />
-      {/* <Route path="/main" component={ } /> */}
-    </React.Fragment>
-  </BrowserRouter>
-), document.getElementById('root'));
+const store = createStore(
+  appState,
+  applyMiddleware(
+    thunkMiddleware, // lets us dispatch() functions
+    loggerMiddleware // neat middleware that logs actions
+  )
+);
+
+function render() {
+  ReactDOM.render(<App store={store} />, document.getElementById("root"));
 }
 render();
- 
+
 serviceWorker.unregister();

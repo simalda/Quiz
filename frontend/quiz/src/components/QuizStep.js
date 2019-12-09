@@ -1,21 +1,20 @@
-import React  from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { continueButton, SelectAnswer } from "../redux/actions";
+import { submitAnswer } from "../redux/thunkActions";
+
 import AnswerOptions from "./AnswerOptions";
 import ContinueButton from "./ContinueButton";
 
-class QuizStep extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-
+class ConnectedCQuizStep extends React.Component {
   renderAnswer(title) {
     return (
       <AnswerOptions
         title={title}
         key={title}
         highlight={
-          title === this.props.selectedAnswer
+          title === this.props.chosenAnswer
             ? title === this.props.correctAnswer
               ? "correct"
               : "incorrect"
@@ -26,26 +25,72 @@ class QuizStep extends React.Component {
     );
   }
 
+  continueButton() {
+    if (this.props.isAnswerSelected === 1) {
+      if (
+        parseInt(this.props.numberOfQuestions, 10) ===
+        this.props.numberOfCurrentQuestion + 1
+      ) {
+        this.props.continueButtonLast();
+      } else {
+        this.props.continueButtonClicked();
+      }
+    }
+  }
+
   render() {
     return (
-      <div>         
-            <div className="row">
-              <div className="col-lg-4"></div>
-              <div className="col-lg-4">  
-                  <div   className = "heade">{this.props.numberOfCurrentQuestion}\{this.props.numberOfQuestions}</div>
-                  <div className ="text"><h3 id={"question"+this.props.numberOfCurrentQuestion}>{this.props.question}</h3></div>
-                  <div className="">
-                    {this.props.answerOptions.map(title =>
-                      this.renderAnswer(title[0])
-                    )}
-                    <ContinueButton isAnswerSelected = {this.props.isAnswerSelected} nextTurn={() => this.props.continueButtonClicked()} />               
-                  </div>
-             </div>
-               <div className="col-lg-4"></div>            
-                         </div>
-          </div>
-                 );
+      <div id="container-quiz_step">
+        <div className="text heade">
+          {this.props.numberOfCurrentQuestion + 1}\
+          {this.props.numberOfQuestions}
+        </div>
+        <div className="text">
+          <h3 id={"question" + this.props.numberOfCurrentQuestion}>
+            {this.props.question}
+          </h3>
+        </div>
+
+        {this.props.answerOptions.map(title => this.renderAnswer(title[0]))}
+        <ContinueButton
+          isAnswerSelected={this.props.isAnswerSelected}
+          nextTurn={() => this.continueButton()}
+        />
+      </div>
+    );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...ownProps,
+    chosenAnswer: state.setQuizReducer.chosenAnswer,
+    correctAnswer: state.setQuizReducer.correctAnswer,
+    numberOfCurrentQuestion: state.setQuizReducer.numberOfCurrentQuestion,
+    numberOfQuestions: state.numberOfQuestionsReducer.numberOfQuestions,
+    question: state.setQuizReducer.question,
+    answerOptions: state.setQuizReducer.answerOptions,
+    isAnswerSelected: state.setQuizReducer.isAnswerSelected
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    continueButtonClicked: () => {
+      dispatch(continueButton());
+    },
+    onAnswerSelected: title => {
+      dispatch(SelectAnswer(title));
+    },
+    continueButtonLast: () => {
+      dispatch(submitAnswer());
+    }
+  };
+};
+
+const QuizStep = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(ConnectedCQuizStep));
 
 export default QuizStep;

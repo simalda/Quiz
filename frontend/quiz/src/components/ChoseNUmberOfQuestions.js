@@ -1,33 +1,59 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
- 
+import React from "react";
 
-class ChoseNUmberOfQuestions extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+import { connect } from "react-redux";
+import { onNUmberOfQuestionsSelected } from "../redux/thunkActions";
+import { Link } from "react-router-dom";
 
-  handlesubmit(submitter) {
+class ConnectedChoseNUmberOfQuestions extends React.Component {
+  handleSubmit(submitter) {
     var value = document.getElementById("numberOfQuestionsInput").value;
-    submitter(this.props.lang, value);
+    submitter(value);
   }
 
   render() {
-        return (
-      <div className = "col-lg-12">           
-            <div className="row   top60">
-             <div className="col-lg-5"></div>
-              <div className="col-lg-3">  
-                  <div className = "heade">{this.props.lang}</div>
-                  <div className ="textNumber">How many questions do you want in your quiz?</div>
-                  <input id = "numberOfQuestionsInput" className ="inputNumber" type="text" name="numberOfQuestions" />
-                 <div  id="startButton"  className="startQuiz button top" onClick={() => this.handlesubmit(this.props.onNUmberOfQuestionsSelected)}>         
-                  START THE QUIZ</div>
-            </div>
-            <div className="col-lg-5"></div>
-          </div>
+    return (
+      <div id="container-choose">
+        <div className="heade">{this.props.lang}</div>
+        <div className="chooseNumberText">
+          How many questions do you want in your quiz?
+        </div>
+        <input
+          id="numberOfQuestionsInput"
+          className="chooseNumberInput"
+          type="text"
+          name="numberOfQuestions"
+        />
+        <Link
+          to="/quizStep"
+          className="startQuiz"
+          onClick={() => this.handleSubmit(this.props.chooseNumberOfQuestions)}
+        >
+          <div id="startButton">START THE QUIZ</div>
+        </Link>
       </div>
-        );
+    );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...state,
+    ...ownProps,
+    lang: state.languageReducer.lang
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    chooseNumberOfQuestions: questionNum => {
+      dispatch(onNUmberOfQuestionsSelected(questionNum));
+    }
+  };
+};
+
+const ChoseNUmberOfQuestions = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedChoseNUmberOfQuestions);
+
 export default ChoseNUmberOfQuestions;

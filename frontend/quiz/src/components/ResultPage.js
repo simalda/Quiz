@@ -1,16 +1,18 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
- 
+import React from "react";
 
-class ResultPage extends React.Component {
+import { connect } from "react-redux";
+import { setLanguage } from "../redux/actions";
+
+class ConnectedResultPage extends React.Component {
   constructor(props) {
     super(props);
+    this.incorrectAnswers =
+      this.props.numberOfQuestions - this.props.numberOfCorrectAnswers;
+    this.percentage = (
+      (this.props.numberOfCorrectAnswers * 100) /
+      this.props.numberOfQuestions
+    ).toFixed(1);
   }
-  incorrectAnswers =
-    this.props.numberOfQuestions - this.props.numberOfCorrectAnswers;
-  percentage =
-    ((this.props.numberOfCorrectAnswers * 100) / this.props.numberOfQuestions).toFixed(1);
-
   render() {
     var resultList = [];
     var i;
@@ -21,11 +23,11 @@ class ResultPage extends React.Component {
       ) {
         color = "correctBorder";
       } else {
-        color = "incorrectborder";
+        color = "incorrectBorder";
       }
 
       resultList.push(
-        <div key={i} className={color+" top results"}>
+        <div key={i} className={color + "   results"}>
           <div>
             <h3>QUESTION {i + 1}</h3>
             {this.props.quiz[i].question}
@@ -36,27 +38,46 @@ class ResultPage extends React.Component {
       );
     }
     return (
-      <div className=" ">   
-          <div className="row">
-            <div className="col-lg-3"></div>
-            <div className="col-lg-6">
-            <div className="heade top"> RESULT: {this.percentage} % </div>
-              <div className="text font30">  Correct answers --{" "}
-                {this.props.numberOfCorrectAnswers}, Inccorect answers --{" "}
-                {this.incorrectAnswers}
-              </div>
-              <div className="text ">{resultList.map(item =>
-                      item
-                    )} </div>
-                <div id="startQuizButton"  className="button startQuiz  top"  onClick={(x)=> this.props.onLanguageSelected(this.props.lang)}>           
-                  START NEW QUIZ</div>
-              <div className="col-lg-3"></div>
-            </div>
-          </div>
+      <div id="container-result">
+        <div className="heade top"> RESULT: {this.percentage} % </div>
+        <div className="text font30">
+          Correct answers -- {this.props.numberOfCorrectAnswers}, Incorrect
+          answers -- {this.incorrectAnswers}
         </div>
-       
+        <div className="text2">{resultList.map(item => item)} </div>
+        <div
+          id="startQuizButton"
+          className="button reStartQuiz  top"
+          onClick={x => this.props.onLanguageSelected(this.props.lang)}
+        >
+          START NEW QUIZ
+        </div>
+      </div>
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...ownProps,
+    numberOfCorrectAnswers: state.setQuizReducer.numberOfCorrectAnswers,
+    numberOfQuestions: state.numberOfQuestionsReducer.numberOfQuestions,
+    quiz: state.setQuizReducer.quiz,
+    lang: state.languageReducer.lang
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onLanguageSelected: lang => {
+      dispatch(setLanguage(lang));
+    }
+  };
+};
+
+const ResultPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedResultPage);
 
 export default ResultPage;

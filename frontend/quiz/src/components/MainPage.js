@@ -1,35 +1,64 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
- 
- 
+import React from "react";
+import { connect } from "react-redux";
+import { setLanguage } from "../redux/actions";
+import { Link } from "react-router-dom";
 
-class MainPage extends React.Component {
+class ConnectedMainPage extends React.Component {
   constructor(props) {
     super(props);
 
-     this.languages = ["Python", "React", "SQL"];
-     }
+    this.languages = ["Python", "C#", "SQL"];
+  }
 
-  handlesubmit(submitter, id) {
+  handleSubmit(submitter, id) {
     submitter(id);
   }
 
+  // getStyleByIndex(index) {
+  //   var bodyStyles = document.body.style;
+  //   bodyStyles.setProperty("--text-color", "white");
+  //   bodyStyles.setProperty("--background-color", "black");
+  // }
   produceLanguages(languages) {
-    return  languages.map(language => (
-      <div
-        key = {language}
-        className="button top60 mainPage"
+    return languages.map((language, index) => (
+      <Link
+        to="/choosesNumber"
+        id="langDiv"
+        index
+        className="gridMain"
         onClick={() =>
-          this.handlesubmit(this.props.onLanguageSelected, language)
+          this.handleSubmit(this.props.onLanguageSelected, language)
         }
       >
-        <h4>{language}</h4>
-      </div>
+        <div key={language}>
+          <h4>{language}</h4>
+        </div>
+      </Link>
     ));
   }
 
   render() {
-    return <div>{this.produceLanguages(this.languages)}</div>;
+    return <div id="container"> {this.produceLanguages(this.languages)} </div>;
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...ownProps
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onLanguageSelected: language => {
+      dispatch(setLanguage(language));
+    }
+  };
+};
+
+const MainPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedMainPage);
+
 export default MainPage;

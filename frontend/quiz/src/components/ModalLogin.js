@@ -1,22 +1,44 @@
- 
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+import { connect } from "react-redux";
+import { closeModal } from "../redux/actions";
 
-
-class ModalLogin extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-     
-    render(){
-        return  <div id="myModal" className="modal ">
-          <div className="modal-content button"  >
-            <span className="close" onClick={()=> this.props.closeModal( )}>&times;</span>
-            <p>{this.props.text}
-            </p>
-          </div>
+class ConnectedModalLogin extends React.Component {
+  render() {
+    return (
+      <div id="myModal" className="modal ">
+        <div className="modal-content button">
+          <span
+            className="close"
+            onClick={x => this.props.closeModal(this.props.user)}
+          >
+            &times;
+          </span>
+          <p>{this.props.text}</p>
         </div>
-        
-    }
+      </div>
+    );
+  }
 }
- export default ModalLogin;
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...ownProps,
+    text: state.userReducer.modal,
+    user: state.userReducer.user
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    closeModal: user => {
+      dispatch(closeModal(user));
+    }
+  };
+};
+
+const ModalLogin = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedModalLogin);
+
+export default ModalLogin;

@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
- 
+import React from "react";
+
 import "./QuizStep";
 
 function AnswerOptions({ title, highlight, onClick }) {
-  var clasname =  "top10 answers button  "+ (!!highlight ? highlight : "notSelected");
+  var className =
+    "top10 answers button  " + (!!highlight ? highlight : "notSelected");
 
   return (
-    <div id="answer" className={clasname} onClick={() => onClick(title)}>
+    <div id="answer" className={className} onClick={() => onClick(title)}>
       <h4>{title}</h4>
     </div>
   );

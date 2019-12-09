@@ -1,22 +1,27 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+
+import { connect } from "react-redux";
+import { login } from "../redux/thunkActions";
+import { setGuestUser, signUp } from "../redux/actions";
+import { Link } from "react-router-dom";
+
 import vi from "../images/CHECK.png";
 import ModalLogin from "./ModalLogin";
 import ModalSignup from "./ModalSignup";
-import modalKinds from "../JS/ModlKind";
+import modalKinds from "../JS/ModalKind";
 
-class LogInPage extends React.Component {
+class ConnectedLogInPage extends React.Component {
   constructor(props) {
     super(props);
-    this.autonticates = ["Login", "Singup", "Enter as Guest"];
+    this.authenticates = ["Login", "SingUp", "Enter as Guest"];
     this.username = "";
     this.password = "";
   }
 
-  login() {
+  doLogin() {
     var user = document.getElementById("username").value;
-    var pasw = document.getElementById("password").value;
-    this.props.onLoginSelected(user, pasw);
+    var password = document.getElementById("password").value;
+    this.props.login(user, password);
   }
 
   createModal(modalKind) {
@@ -25,85 +30,126 @@ class LogInPage extends React.Component {
     }
     if (modalKind === modalKinds.OpenSignup) {
       return (
-        <ModalSignup closeModal={() => this.props.closeModal()} signUp={(x, y,z) => this.props.signUp(x, y,z)}></ModalSignup>
+        <ModalSignup
+          closeModal={() => this.props.closeModal()}
+          signUp={(x, y, z) => this.props.signUp(x, y, z)}
+        ></ModalSignup>
       );
     }
-     
 
-    
     return (
-      <ModalLogin
-        closeModal={() => this.props.closeModal()}
-        text={modalKind}
-      />
+      <ModalLogin closeModal={() => this.props.closeModal()} text={modalKind} />
     );
   }
 
   render() {
     let modal = this.createModal(this.props.modal);
-
+    let input;
+    if (this.props.user !== "guest") {
+      input = (
+        <input
+          id="username"
+          className="button"
+          type="username"
+          placeholder="Email"
+          value={this.props.user}
+        />
+      );
+    } else {
+      input = (
+        <input
+          id="username"
+          className="button"
+          type="username"
+          placeholder="Email"
+        />
+      );
+    }
     return (
       <div>
-        <div
-          className="col-lg-12  facebook top60 "
-          onClick={() => this.props.onEnterAsaGuestSelected()}
-        >
-          <span id="guest">LOGIN AS GUEST</span>
-        </div>
-        <div className="row top60">
-          <div className="col-lg-3"></div>
-          <div className="col-lg-3 divExt padr">
-            <h3>LOGIN</h3>
-            <input
-              className="button top"
-              id="username"
-              type="username"
-              placeholder="Email"
-            />
-            <input
-              className="button top below30"
-              id="password"
-              type="password"
-              placeholder="Password"
-            />
-          </div>
-          <div className="col-lg-3 padl">
-            <h3>NEW MEMBER</h3>
-            <div className="text top">Why to sing in?</div>
-            <div className="text ">
+        <div id="grid-container">
+          <Link
+            to="/main"
+            id="enterAsGuest"
+            onClick={() => this.props.onEnterAsaGuestSelected()}
+          >
+            <span id="guest">LOGIN AS GUEST</span>
+          </Link>
+          <div className="divExt"></div>
+          <h3 id="login-text">LOGIN</h3>
+          <h3 id="newMember-text"> NEW MEMBER</h3>
+          {input}
+          <div id="text">
+            <div className="text2 ">Why to sing in?</div>
+            <div className="text2 ">
               <img alt="" className="image ViImage" src={vi} />
               See your history quiz progression
             </div>
-            <div className="text ">
+            <div className="text2 ">
               <img alt="" className="image ViImage" src={vi} />
-              Be the first to know about new quizes
+              Be the first to know about new quizzes
             </div>
-            <div className="text ">
+            <div className="text2 ">
               <img alt="" className="image ViImage" src={vi} />
               Add new questions
             </div>
           </div>
-          <div className="col-lg-3"></div>
-        </div>
-        <div className="row   ">
-          <div className="col-lg-3"></div>
-          <div className="col-lg-3  padr divExt">
-            <div id="login" className="login button" onClick={() => this.login()}>
-              Login
-            </div>
+          <input
+            className="button"
+            id="password"
+            type="password"
+            placeholder="Password"
+          />
+          <div
+            id="login"
+            className="login button"
+            onClick={() => this.doLogin()}
+          >
+            Login
           </div>
-          <div className="col-lg-3 padl">
-            <div id="signup"
-              className="login button"
-              onClick={() => this.props.onSignupSelected()}      >
-               Signup 
-            </div>
+          <div
+            id="signUp"
+            className="login button"
+            onClick={() => this.props.onSignupSelected()}
+          >
+            Signup
           </div>
-          <div className="col-lg-3"></div>
         </div>
+
         {modal}
       </div>
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...ownProps,
+    modal: state.userReducer.modal,
+    user: state.userReducer.user
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (user, password) => {
+      dispatch(login(user, password));
+    },
+    onEnterAsaGuestSelected: () => {
+      dispatch(setGuestUser("guest"));
+    },
+    // closeModal: () => {
+    //   dispatch(closeModal());
+    // },
+    onSignupSelected: () => {
+      dispatch(signUp());
+    }
+  };
+};
+
+const LogInPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConnectedLogInPage);
+
 export default LogInPage;

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Enzyme, { mount, shallow, render } from "enzyme";
+import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import ChoseNUmberOfQuestions from "../components/ChoseNUmberOfQuestions";
@@ -11,14 +11,14 @@ Enzyme.configure({ adapter: new Adapter() });
 const state = {
   quiz: [
     {
-      quesion: "a",
+      question: "a",
       answer: ["c", "d", "s"],
       correctAnswer: "cor"
     },
     {
-      quesion: "ab",
+      question: "ab",
       answer: ["c", "d", "s"],
-      orrectAnswer: "cor2"
+      CorrectAnswer: "cor2"
     }
   ],
   highlight: "none",
@@ -47,8 +47,8 @@ describe("Choose number of questions", () => {
     ReactDOM.render(<ChoseNUmberOfQuestions {...state} />, div);
   });
 
-  it('should show text', ()=>{
+  it("should show text", () => {
     const text = wrapper.find({ id: "startButton" });
     expect(text.text()).toBe("START THE QUIZ");
-  })
+  });
 });

@@ -1,0 +1,361 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("../../images/PIC.jpg");
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+#grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(5, 100px);
+  gap: 20px;
+  color: #fff;
+  justify-items: center;
+  margin-top: 30px;
+}
+#enterAsGuest {
+  background-color: hsl(204, 54%, 67%);
+  width: 80%;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: center;
+  border-radius: 5px;
+  grid-column-start: 3;
+  grid-column-end: 5;
+  height: 90%;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  justify-items: center;
+  align-items: center;
+  display: grid;
+  margin: 20px;
+}
+#login-text {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  align-self: end;
+}
+#newMember-text {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  align-self: end;
+}
+#username {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#password {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.inputNumber {
+  grid-column-start: 3;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  width: 20%;
+  height: 40px;
+  display: grid;
+  border-radius: 5px;
+}
+.textNumber {
+  grid-column-start: 3;
+  grid-column-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  color: white;
+  font-size: 20px;
+}
+
+#text {
+  grid-column-start: 4;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 5;
+}
+.text2 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 20px;
+  display: block;
+}
+#login {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+#signUp {
+  grid-column-start: 4;
+  grid-column-end: 6;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+  float: right;
+}
+ul li {
+  display: inline;
+}
+ul li a {
+  color: #fff;
+  padding: 15px;
+}
+.navbar-text {
+  color: #fff;
+  padding: 15px;
+  display: inline;
+}
+.App-logo {
+  margin-left: 15px;
+  text-align: center;
+  display: inline-block;
+}
+
+header {
+  background-color: #18354c;
+  text-align: center;
+  display: grid;
+  grid-template-columns: fit-content(20%) auto;
+}
+
+.button {
+  display: grid;
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
+  width: 80%;
+  justify-items: center;
+  align-items: center;
+}
+.button2 {
+  display: grid;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 5px;
+  height: 50px;
+}
+.login {
+  display: grid;
+  background-color: rgb(66, 178, 103);
+}
+
+.divExt {
+  border: solid 2px rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 220px;
+  right: 50%;
+  /* width: 2px; */
+
+  height: 450px;
+}
+
+.text,
+h3,
+h4 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  margin-top: 100px;
+  align-items: center;
+  flex-basis: 30%;
+}
+
+#container-choose {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  justify-content: space-around;
+  align-items: center;
+  flex-basis: 30%;
+  margin-top: 100px;
+}
+
+#container-quiz_step {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  justify-content: space-around;
+  align-items: center;
+  flex-basis: 30%;
+  margin-top: 100px;
+}
+#container-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-basis: 30%;
+  margin-top: 100px;
+}
+#langDiv {
+  display: block;
+  width: 40%;
+  height: 20%;
+  background-color: hsl(204, 54%, 67%);
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 15px;
+  text-align: center;
+}
+.startQuiz {
+  display: grid;
+  width: 30%;
+  color: white;
+  height: 25%;
+  background-color: hsl(204, 54%, 67%);
+  font-weight: bold;
+  align-content: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.reStartQuiz {
+  display: grid;
+  width: 30%;
+  color: white;
+  height: 80px;
+  background-color: hsl(204, 54%, 67%);
+  font-weight: bold;
+  align-content: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.heade {
+  color: white;
+  margin-bottom: 20px;
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+}
+.chooseNumberInput {
+  height: 30px;
+  width: 60px;
+  border-radius: 5px;
+  text-align: center;
+}
+.chooseNumberText {
+  color: white;
+  font-size: 20px;
+}
+
+.notSelected {
+  background-color: #a7a2a26e;
+}
+.answers {
+  margin: 5px;
+  display: grid;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
+  width: 30%;
+  justify-items: center;
+  align-items: center;
+}
+
+.nextQuestion {
+  margin: 5px;
+  display: grid;
+  color: white;
+  background-color: gray;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 5px;
+  width: 30%;
+  justify-items: center;
+  align-items: center;
+  height: 10%;
+}
+
+/* AnswerOptions*/
+.correct {
+  background-color: rgb(66, 178, 103);
+}
+
+.incorrect {
+  background-color: #f56d6d;
+}
+
+.correctBorder {
+  border: solid 5px rgb(66, 178, 103);
+}
+
+.incorrectBorder {
+  border: solid 5px #f56d6d;
+}
+.default:hover {
+  background: #abb0ba;
+}
+.results {
+  margin: 5px;
+}
+
+/*---------------------------MODAL-----------------------------
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: block;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: hsl(204, 54%, 67%);
+  width: 20%;
+  padding: 20px 10px;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin: auto;
+  border-radius: 5px;
+  margin-top: 200px;
+}

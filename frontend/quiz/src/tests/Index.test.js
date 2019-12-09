@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Enzyme, {   shallow } from "enzyme";
+import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import App from "../components/App";
 import pages from "../JS/pages";
-import modalKinds from "../JS/ModlKind";
+import modalKinds from "../JS/ModalKind";
 Enzyme.configure({ adapter: new Adapter() });
 
 const state = {
@@ -22,7 +22,6 @@ const state = {
   numberOfCorrectAnswers: 0,
   user: "guest",
   modal: modalKinds.Nothing,
-  dropdownshow: 0,
   userStat: ""
 };
 
@@ -47,38 +46,10 @@ describe("Index", () => {
     ReactDOM.render(<App {...state} />, div);
   });
 
-  it('should show text', ()=>{
+  it("should show text", () => {
     const text = wrapper.find({ id: "guest" });
     expect(text.text()).toBe("LOGIN AS GUEST");
-  })
-
-      
+  });
 });
 
-  /*------------------------------------------------------------------------------------*/
-
-  
-
-// describe("When the first answer is selected", () =>{
-//   let wrapper;
-//   const handleAnswersSelecter = jest.fn();
-
-//   beforeAll(()=> {
-//     wrapper = mount(<QuizStep {...state} onAnswerSelected={()=>{}}/>);
-//     wrapper.find.apply('.kAnswer').first().simulate('click');
-//   });
-
-//   it('onAnswerselected should be called', () => {
-//       expect(handleAnswersSelecter).toHaveBeenCalled();
-//   });
-
-//   it("should receive c", ()=>{
-//     expect(handleAnswersSelecter).toHaveBeenCalledWith("c");
-//   })
-//   });
-
- 
-
-// it('should have no background color', () => {     
-//   expect(wrapper.find({id: "username"}).props().style.backgroundColor).toBe('white');
-// });  
+/*------------------------------------------------------------------------------------*/

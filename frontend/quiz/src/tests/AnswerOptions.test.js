@@ -1,25 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Enzyme, { mount, shallow, render } from "enzyme";
+import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import AnswerOptions from "../components/AnswerOptions";
 import pages from "../JS/pages";
-import modalKinds from "../JS/ModlKind";
 Enzyme.configure({ adapter: new Adapter() });
 
 const state = {
   quiz: [
     {
-      quesion: "a",
+      question: "a",
       answer: ["c", "d", "s"],
       correctAnswer: "cor"
     },
     {
-      quesion: "ab",
+      question: "ab",
       answer: ["c", "d", "s"],
-      orrectAnswer: "cor2"
+      CorrectAnswer: "cor2"
     }
   ],
   highlight: "none",
@@ -47,6 +46,4 @@ describe("Answer options", () => {
     const div = document.createElement("div");
     ReactDOM.render(<AnswerOptions {...state} />, div);
   });
-
-
 });

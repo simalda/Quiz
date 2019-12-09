@@ -57,15 +57,15 @@ class TestClass(unittest.TestCase):
         flag = len(set(elem)) == len(elem) #?????? CHECK
         self.assertEqual(flag, True, "There are same elements in the answers list.")
 
-    def test_PressCorrectUnswerContinueButtonAppear(self):
+    def test_PressCorrectAnswerContinueButtonAppear(self):
         pass
 
-    def test_PressInCorrectUnswerContinueButtonNotAppear(self):
+    def test_PressInCorrectAnswerContinueButtonNotAppear(self):
         pass
     
     
     
-    #def test_CorrectUnswerAppear(self):
+    #def test_CorrectAnswerAppear(self):
         #pass
 
     #def tearDown(self):
