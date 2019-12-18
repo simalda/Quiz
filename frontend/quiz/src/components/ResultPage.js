@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { setLanguage } from "../redux/actions";
@@ -13,7 +14,13 @@ class ConnectedResultPage extends React.Component {
       this.props.numberOfQuestions
     ).toFixed(1);
   }
+  handleSubmit(submitter, lang) {
+    submitter(lang);
+  }
   render() {
+    if (this.props.numberOfQuestions === 0) {
+      return <Redirect to={"/"} />;
+    }
     var resultList = [];
     var i;
     for (i = 0; i < parseInt(this.props.numberOfQuestions, 10); i++) {
@@ -48,7 +55,9 @@ class ConnectedResultPage extends React.Component {
         <div
           id="startQuizButton"
           className="button reStartQuiz  top"
-          onClick={x => this.props.onLanguageSelected(this.props.lang)}
+          onClick={() =>
+            this.handleSubmit(this.props.onLanguageSelected, this.props.lang)
+          }
         >
           START NEW QUIZ
         </div>

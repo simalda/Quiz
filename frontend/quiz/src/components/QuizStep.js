@@ -1,5 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
+import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import { continueButton, SelectAnswer } from "../redux/actions";
 import { submitAnswer } from "../redux/thunkActions";
@@ -8,6 +9,19 @@ import AnswerOptions from "./AnswerOptions";
 import ContinueButton from "./ContinueButton";
 
 class ConnectedCQuizStep extends React.Component {
+  continueButton() {
+    if (this.props.isAnswerSelected === 1) {
+      if (
+        parseInt(this.props.numberOfQuestions, 10) ===
+        this.props.numberOfCurrentQuestion + 1
+      ) {
+        this.props.continueButtonLast();
+      } else {
+        this.props.continueButtonClicked();
+      }
+    }
+  }
+
   renderAnswer(title) {
     return (
       <AnswerOptions
@@ -25,20 +39,21 @@ class ConnectedCQuizStep extends React.Component {
     );
   }
 
-  continueButton() {
-    if (this.props.isAnswerSelected === 1) {
-      if (
-        parseInt(this.props.numberOfQuestions, 10) ===
-        this.props.numberOfCurrentQuestion + 1
-      ) {
-        this.props.continueButtonLast();
-      } else {
-        this.props.continueButtonClicked();
-      }
-    }
-  }
-
   render() {
+    if (this.props.numberOfQuestions === 0) {
+      return <Redirect to={"/"} />;
+    } else if (this.props.loading) {
+      return (
+        <Loader
+          type="Puff"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+          className="spinner"
+        />
+      );
+    }
     return (
       <div id="container-quiz_step">
         <div className="text heade">
@@ -70,7 +85,8 @@ const mapStateToProps = (state, ownProps) => {
     numberOfQuestions: state.numberOfQuestionsReducer.numberOfQuestions,
     question: state.setQuizReducer.question,
     answerOptions: state.setQuizReducer.answerOptions,
-    isAnswerSelected: state.setQuizReducer.isAnswerSelected
+    isAnswerSelected: state.setQuizReducer.isAnswerSelected,
+    loading: state.setQuizReducer.loading
   };
 };
 

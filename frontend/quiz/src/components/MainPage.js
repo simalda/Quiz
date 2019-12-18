@@ -14,11 +14,6 @@ class ConnectedMainPage extends React.Component {
     submitter(id);
   }
 
-  // getStyleByIndex(index) {
-  //   var bodyStyles = document.body.style;
-  //   bodyStyles.setProperty("--text-color", "white");
-  //   bodyStyles.setProperty("--background-color", "black");
-  // }
   produceLanguages(languages) {
     return languages.map((language, index) => (
       <Link

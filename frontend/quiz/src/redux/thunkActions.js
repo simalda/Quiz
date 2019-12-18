@@ -3,6 +3,8 @@ import * as Actions from "./actions";
 
 import history from "../JS/history";
 
+import CreateUserStatus from "../JS/CreateUserStatus";
+
 export function login(user, password) {
   return (dispatch, getState) => {
     dispatch(Actions.login(Actions.AsyncState.Started, user));
@@ -12,12 +14,10 @@ export function login(user, password) {
           history.push("/main");
           dispatch(Actions.login(Actions.AsyncState.Success, user));
         } else {
-          // history.push("/login");
           dispatch(Actions.login(Actions.AsyncState.Failure, null, true));
         }
       })
       .catch(() => {
-        // history.push("/login");
         dispatch(Actions.login(Actions.AsyncState.Failure, null));
       });
   };
@@ -44,15 +44,14 @@ export function onNUmberOfQuestionsSelected(numberOfQuestions) {
       Actions.chooseNumberOfQuestion(
         Actions.AsyncState.Started,
         numberOfQuestions,
-        lang
+        lang,
+        true
       )
     );
 
-    // history.push("/choosesNumber");
-
     BackendProxy.getQuestions(lang, numberOfQuestions)
       .then(response => {
-        dispatch(Actions.creatQuizSuccess(response));
+        dispatch(Actions.creatQuizSuccess(response, false));
       })
       .catch(() =>
         dispatch(Actions.chooseNumberOfQuestion(Actions.AsyncState.Failure))
@@ -62,20 +61,15 @@ export function onNUmberOfQuestionsSelected(numberOfQuestions) {
 
 export function submitAnswer() {
   return (dispatch, getState) => {
-    history.push("/results");
-    // dispatch(Actions.continueButtonLast());
-
+    let a = getState().userReducer.user;
     if (getState().userReducer.user !== "guest") {
-      BackendProxy.addQuiz(
-        getState().userReducer.user,
-        getState().userReducer.quiz
-      )
-        .then(response => {
-          dispatch(Actions.continueButton(Actions.AsyncState.Success));
-        })
+      BackendProxy.addQuiz(a, getState().setQuizReducer.quiz)
+        .then(() => history.push("/results"))
         .catch(() =>
-          dispatch(Actions.continueButton(Actions.AsyncState.Failure))
+          dispatch(Actions.continueButtonLast(Actions.AsyncState.Failure))
         );
+    } else {
+      history.push("/results");
     }
   };
 }
@@ -89,7 +83,13 @@ export function signUpSubmit(name, pass, pass2) {
       dispatch(Actions.TwoPassAreNotEqual());
     } else {
       BackendProxy.creatUser(name, pass).then(response => {
-        dispatch(Actions.signUpSuccess(name));
+        if (response === CreateUserStatus.CreateUserSuccess) {
+          dispatch(Actions.signUpSuccess(name));
+        } else if (response === CreateUserStatus.UserAlreadyExists) {
+          dispatch(Actions.UserAlreadyExists());
+        } else if (response === CreateUserStatus.CantCreateUserInDB) {
+          dispatch(Actions.CantCreateUserInDB(name));
+        }
       });
     }
   };

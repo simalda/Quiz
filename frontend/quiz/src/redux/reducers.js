@@ -21,7 +21,9 @@ import {
   SET_QUIZ,
   EMAIL_WRONG,
   PASS_NOT_EQUAL,
-  SIGN_UP_SUCCESS
+  SIGN_UP_SUCCESS,
+  USER_EXIST,
+  SOMETHING_WRONG
 } from "./actions";
 
 function languageReducer(state = { lang: "" }, action) {
@@ -83,18 +85,25 @@ function setQuizReducer(
     answerOptions: [],
     chosenAnswer: "",
     isAnswerSelected: 0,
-    numberOfCorrectAnswers: 0
+    numberOfCorrectAnswers: 0,
+    loading: false
   },
   action
 ) {
   switch (action.type) {
+    case NUMBER_OF_QUESTIONS:
+      return {
+        ...state,
+        loading: action.loading
+      };
     case SET_QUIZ:
       return {
         ...state,
         quiz: action.quiz,
         question: action.quiz[state.numberOfCurrentQuestion].question,
         correctAnswer: action.quiz[state.numberOfCurrentQuestion].correctAnswer,
-        answerOptions: action.quiz[state.numberOfCurrentQuestion].answerOptions
+        answerOptions: action.quiz[state.numberOfCurrentQuestion].answerOptions,
+        loading: action.loading
       };
     case CONTINUE_BUTTON_CLICKED:
       return {
@@ -171,6 +180,16 @@ function userReducer(
         ...state,
         modal: modalKinds.TwoPassAreNotEqual
       };
+    case USER_EXIST:
+      return {
+        ...state,
+        modal: modalKinds.UserAlreadyExists
+      };
+    case SOMETHING_WRONG:
+      return {
+        ...state,
+        modal: modalKinds.SomethingWentWrong
+      };
     case EMAIL_WRONG:
     case SIGN_UP_SUCCESS:
       return {
@@ -213,7 +232,6 @@ function getStatReducer(state = { user: "guest" }, action) {
 
 export const appState = combineReducers({
   userReducer,
-  //SignupReducer,
   AboutUs,
   languageReducer,
   numberOfQuestionsReducer,

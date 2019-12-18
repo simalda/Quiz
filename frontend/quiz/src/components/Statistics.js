@@ -9,17 +9,17 @@ class ConnectedStatistics extends React.Component {
     this.resultList = [];
   }
   correctAn(i) {
-    let choosen;
-    if (this.props.userStat[i]["ChoosenAnswerId"] === 0) {
-      choosen = (
+    let chosen;
+    if (this.props.userStat[i]["ChosenAnswerId"] === 0) {
+      chosen = (
         <div>Chosen answer: {this.props.userStat[i]["correctAnswer"]}</div>
       );
     } else {
-      choosen = (
-        <div>Chosen answer: {this.props.userStat[i]["ChoosenAnswerId"]}</div>
+      chosen = (
+        <div>Chosen answer: {this.props.userStat[i]["ChosenAnswerId"]}</div>
       );
     }
-    return choosen;
+    return chosen;
   }
   render() {
     let i = 0;

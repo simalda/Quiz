@@ -1,5 +1,15 @@
 {
     "python.pythonPath": "C:\\Users\\simal\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "cSpell.ignoreWords": [
+        "cnxn",
+        "jsonify",
+        "odbc",
+        "per",
+        "pyodbc",
+        "quizes",
+        "sofadb",
+        "user"
+    ]
 }

@@ -359,3 +359,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
   border-radius: 5px;
   margin-top: 200px;
 }
+.spinner {
+  display: grid;
+  margin-top: 200px;
+  justify-content: center;
+}

@@ -5,7 +5,7 @@ import { closeModal } from "../redux/actions";
 import { signUpSubmit } from "../redux/thunkActions";
 
 class ConnectedModalSignup extends React.Component {
-  handlesubmit(submitter) {
+  handleSubmit(submitter) {
     var user = document.getElementById("usernameS").value;
     var password = document.getElementById("passwordS").value;
     var password2 = document.getElementById("password2").value;
@@ -40,7 +40,7 @@ class ConnectedModalSignup extends React.Component {
           />
           <Link
             id="SingUp"
-            onClick={() => this.handlesubmit(this.props.signUp)}
+            onClick={() => this.handleSubmit(this.props.signUp)}
           >
             Signup
           </Link>
@@ -58,8 +58,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeModalReducer: () => {
-      dispatch(closeModal());
+    closeModal: user => {
+      dispatch(closeModal(user));
     },
     signUp: (user, pass, pass2) => {
       dispatch(signUpSubmit(user, pass, pass2));

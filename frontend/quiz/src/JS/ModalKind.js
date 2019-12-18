@@ -5,7 +5,8 @@ const modalKinds = {
   SomethingWentWrong: "Something went wrong",
   OpenSignup: "Open Sing Up",
   TwoPassAreNotEqual: "Two passwords are not equal",
-  EmailNotValid: "Email Not Valid"
+  EmailNotValid: "Email Not Valid",
+  UserAlreadyExists: "User Already Exists"
 };
 
 export default modalKinds;

@@ -18,12 +18,6 @@ class ConnectedLogInPage extends React.Component {
     this.password = "";
   }
 
-  doLogin() {
-    var user = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    this.props.login(user, password);
-  }
-
   createModal(modalKind) {
     if (modalKind === modalKinds.Nothing) {
       return null;
@@ -40,6 +34,11 @@ class ConnectedLogInPage extends React.Component {
     return (
       <ModalLogin closeModal={() => this.props.closeModal()} text={modalKind} />
     );
+  }
+  doLogin() {
+    var user = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    this.props.login(user, password);
   }
 
   render() {
@@ -138,9 +137,6 @@ const mapDispatchToProps = dispatch => {
     onEnterAsaGuestSelected: () => {
       dispatch(setGuestUser("guest"));
     },
-    // closeModal: () => {
-    //   dispatch(closeModal());
-    // },
     onSignupSelected: () => {
       dispatch(signUp());
     }

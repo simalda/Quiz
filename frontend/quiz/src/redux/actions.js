@@ -24,6 +24,8 @@ export const SIGN_UP_MODAL = "SIGN_UP_MODAL";
 export const EMAIL_WRONG = "EMAIL_WRONG";
 export const PASS_NOT_EQUAL = "PASS_NOT_EQUAL";
 export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+export const USER_EXIST = "USER_EXIST";
+export const SOMETHING_WRONG = "SOMETHING_WRONG";
 
 /*
  * other constants
@@ -89,6 +91,16 @@ export function TwoPassAreNotEqual() {
     type: PASS_NOT_EQUAL
   };
 }
+export function UserAlreadyExists() {
+  return {
+    type: USER_EXIST
+  };
+}
+export function CantCreateUserInDB() {
+  return {
+    type: SOMETHING_WRONG
+  };
+}
 export const AsyncState = {
   Started: "Started",
   Success: "Success",
@@ -112,28 +124,35 @@ export function statistics(asyncState, userStatistics = undefined) {
   };
 }
 
-export function chooseNumberOfQuestion(asyncState, numberOfQuestions, lang) {
+export function chooseNumberOfQuestion(
+  asyncState,
+  numberOfQuestions,
+  lang,
+  loading
+) {
   return {
     type: NUMBER_OF_QUESTIONS,
     asyncState,
     numberOfQuestions,
-    lang
+    lang,
+    loading
   };
 }
 
-export function creatQuizSuccess(response) {
+export function creatQuizSuccess(response, loading) {
   let quiz = response;
   let numberOfCurrentQuestion = 0;
   return {
     type: SET_QUIZ,
     quiz,
-    numberOfCurrentQuestion
+    numberOfCurrentQuestion,
+    loading
   };
 }
-export function signUpSuccess(response) {
+export function signUpSuccess(userName) {
   return {
     type: SIGN_UP_SUCCESS,
-    name: response
+    user: userName
   };
 }
 export function continueButtonLast(asyncState) {

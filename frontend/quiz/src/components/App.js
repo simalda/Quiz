@@ -1,4 +1,6 @@
 import React from "react";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 //import propTypes from "prop-types";
 
@@ -12,7 +14,7 @@ import ChoseNUmberOfQuestions from "../components/ChoseNUmberOfQuestions";
 
 import LogInPage from "../components/LogInPage";
 import Statistics from "../components/Statistics";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import history from "../JS/history";
 import { Router } from "react-router";
 
@@ -21,42 +23,6 @@ import ModalLogin from "./ModalLogin";
 import ModalSignup from "./ModalSignup";
 
 class App extends React.Component {
-  // signUp(name, pass, pass2) {
-  //   let re1 = new RegExp("^[A-Za-z0-9]+@[A-Za-z0-9]+.[A-Za-z0-9]+$");
-  //   if (!name.match(re1)) {
-  //     this.setState({
-  //       ...this.state,
-  //       modal: modalKinds.EmailNotValid
-  //     });
-  //   } else if (pass !== pass2) {
-  //     this.setState({
-  //       ...this.state,
-  //       modal: modalKinds.TwoPassAreNotEqual
-  //     });
-  //   } else {
-  //     this.creatUser(name, pass).then(userData => {
-  //       if (userData === 0) {
-  //         this.setState({
-  //           ...this.state,
-  //           page: pages.Main,
-  //           user: userData.user,
-  //           modal: modalKinds.Nothing
-  //         });
-  //       } else if (userData === 2) {
-  //         this.setState({
-  //           ...this.state,
-  //           modal: 4
-  //         });
-  //       } else if (userData === 3) {
-  //         this.setState({
-  //           ...this.state,
-  //           modal: 5
-  //         });
-  //       }
-  //     });
-  //   }
-  // }
-
   render() {
     return (
       <Provider store={this.props.store}>
