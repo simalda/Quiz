@@ -3,6 +3,7 @@
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "cSpell.ignoreWords": [
+        "choosen",
         "cnxn",
         "jsonify",
         "odbc",
@@ -10,6 +11,10 @@
         "pyodbc",
         "quizes",
         "sofadb",
+        "sql",
         "user"
+    ],
+    "cSpell.words": [
+        "sql"
     ]
 }

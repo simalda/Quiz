@@ -5,6 +5,7 @@ export const ENTER_AS_GUEST = "ENTER_AS_GUEST";
 export const CLOSE_MODAL = "CLOSE_MODAL";
 export const PAGE_ABOUT_US = "PAGE_ABOUT_US";
 export const CHOOSE_LANG = "CHOOSE_LANG";
+export const CHOOSE_LANG2 = "CHOOSE_LANG2";
 export const LANG = "LANG";
 export const ANSWER_SELECTED = "ANSWER_SELECTED";
 export const GET_STAT = "GET_STAT";
@@ -44,7 +45,12 @@ export function setLanguage(language) {
     language
   };
 }
-
+export function setLanguageStartNewQuiz(language) {
+  return {
+    type: CHOOSE_LANG2,
+    language
+  };
+}
 export function closeModal(user) {
   return {
     type: CLOSE_MODAL,

@@ -36,8 +36,8 @@ class ConnectedLogInPage extends React.Component {
     );
   }
   doLogin() {
-    var user = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    const user = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
     this.props.login(user, password);
   }
 
@@ -61,6 +61,7 @@ class ConnectedLogInPage extends React.Component {
           className="button"
           type="username"
           placeholder="Email"
+          // value={this.username}
         />
       );
     }

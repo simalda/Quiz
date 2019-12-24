@@ -22,9 +22,10 @@ class ConnectedCQuizStep extends React.Component {
     }
   }
 
-  renderAnswer(title) {
+  renderAnswer(title, index) {
     return (
       <AnswerOptions
+        index={index}
         title={title}
         key={title}
         highlight={
@@ -66,7 +67,9 @@ class ConnectedCQuizStep extends React.Component {
           </h3>
         </div>
 
-        {this.props.answerOptions.map(title => this.renderAnswer(title[0]))}
+        {this.props.answerOptions.map((title, index) =>
+          this.renderAnswer(title[0], index)
+        )}
         <ContinueButton
           isAnswerSelected={this.props.isAnswerSelected}
           nextTurn={() => this.continueButton()}

@@ -10,6 +10,7 @@ import {
   CLOSE_MODAL,
   PAGE_ABOUT_US,
   CHOOSE_LANG,
+  CHOOSE_LANG2,
   NUMBER_OF_QUESTIONS,
   CONTINUE_BUTTON_CLICKED,
   CONTINUE_BUTTON_LAST_QUESTION,
@@ -95,6 +96,14 @@ function setQuizReducer(
       return {
         ...state,
         loading: action.loading
+      };
+    case CHOOSE_LANG2:
+      return {
+        ...state,
+        chosenAnswer: "",
+        isAnswerSelected: 0,
+        numberOfCorrectAnswers: 0,
+        numberOfCurrentQuestion: 0
       };
     case SET_QUIZ:
       return {

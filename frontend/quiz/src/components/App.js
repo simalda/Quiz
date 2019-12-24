@@ -1,11 +1,9 @@
 import React from "react";
-import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 //import propTypes from "prop-types";
 
 import NavBar from "../components/NavBar";
-import Test from "../components/Test";
 import MainPage from "../components/MainPage";
 import QuizStep from "../components/QuizStep";
 import ResultPage from "../components/ResultPage";

@@ -18,9 +18,9 @@ class ConnectedMainPage extends React.Component {
     return languages.map((language, index) => (
       <Link
         to="/choosesNumber"
-        id="langDiv"
+        id={language + "Btn"}
         index
-        className="gridMain"
+        className="gridMain langDiv"
         onClick={() =>
           this.handleSubmit(this.props.onLanguageSelected, language)
         }

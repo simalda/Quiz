@@ -6,17 +6,21 @@ import { signUpSubmit } from "../redux/thunkActions";
 
 class ConnectedModalSignup extends React.Component {
   handleSubmit(submitter) {
-    var user = document.getElementById("usernameS").value;
-    var password = document.getElementById("passwordS").value;
-    var password2 = document.getElementById("password2").value;
+    const user = document.getElementById("usernameS").value;
+    const password = document.getElementById("passwordS").value;
+    const password2 = document.getElementById("password2").value;
     submitter(user, password, password2);
   }
 
   render() {
     return (
-      <div id="myModal" className="modal ">
+      <div id="signupModal" className="modal">
         <div className="modal-content ">
-          <span className="close" onClick={() => this.props.closeModal()}>
+          <span
+            id="closeModal"
+            className="close"
+            onClick={() => this.props.closeModal()}
+          >
             &times;
           </span>
           <p>Please enter your email and password</p>

@@ -37,7 +37,12 @@ class ConnectedNavBar extends React.Component {
     if (this.props.user !== "guest") {
       addQuest = (
         <li>
-          <Link id="addQuestion" className="navbar-text " to="/addQuestion">
+          <Link
+            id="addQuestion"
+            className="navbar-text "
+            to="/addQuestion"
+            onClick={() => this.props.addQuestion()}
+          >
             Add a question
           </Link>
           <Link
@@ -48,7 +53,9 @@ class ConnectedNavBar extends React.Component {
           >
             Statistics
           </Link>
-          <div className="navbar-text "> {this.props.user} </div>
+          <div className="navbar-text" id="user">
+            {this.props.user}
+          </div>
         </li>
       );
     }
@@ -91,7 +98,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(setLanguage(language));
     },
     getStat: user => {},
-    AboutUs: () => {}
+    AboutUs: () => {},
+    addQuestion: () => {}
   };
 };
 

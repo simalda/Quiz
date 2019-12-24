@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-
+import history from "../JS/history";
 import { connect } from "react-redux";
-import { setLanguage } from "../redux/actions";
+import { setLanguageStartNewQuiz } from "../redux/actions";
 
 class ConnectedResultPage extends React.Component {
   constructor(props) {
@@ -15,16 +15,17 @@ class ConnectedResultPage extends React.Component {
     ).toFixed(1);
   }
   handleSubmit(submitter, lang) {
+    history.push("/choosesNumber");
     submitter(lang);
   }
   render() {
     if (this.props.numberOfQuestions === 0) {
       return <Redirect to={"/"} />;
     }
-    var resultList = [];
-    var i;
+    let resultList = [];
+    let i;
     for (i = 0; i < parseInt(this.props.numberOfQuestions, 10); i++) {
-      var color;
+      let color;
       if (
         this.props.quiz[i].correctAnswer === this.props.quiz[i].chosenAnswer
       ) {
@@ -79,7 +80,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     onLanguageSelected: lang => {
-      dispatch(setLanguage(lang));
+      dispatch(setLanguageStartNewQuiz(lang));
     }
   };
 };

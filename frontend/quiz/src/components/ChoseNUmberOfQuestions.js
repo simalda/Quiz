@@ -6,14 +6,16 @@ import { Link } from "react-router-dom";
 
 class ConnectedChoseNUmberOfQuestions extends React.Component {
   handleSubmit(submitter) {
-    var value = document.getElementById("numberOfQuestionsInput").value;
+    let value = document.getElementById("numberOfQuestionsInput").value;
     submitter(value);
   }
 
   render() {
     return (
       <div id="container-choose">
-        <div className="heade">{this.props.lang}</div>
+        <div className="heade" id="header">
+          {this.props.lang}
+        </div>
         <div className="chooseNumberText">
           How many questions do you want in your quiz?
         </div>
@@ -24,11 +26,12 @@ class ConnectedChoseNUmberOfQuestions extends React.Component {
           name="numberOfQuestions"
         />
         <Link
+          id="startButton"
           to="/quizStep"
           className="startQuiz"
           onClick={() => this.handleSubmit(this.props.chooseNumberOfQuestions)}
         >
-          <div id="startButton">START THE QUIZ</div>
+          <div>START THE QUIZ</div>
         </Link>
       </div>
     );

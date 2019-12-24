@@ -5,7 +5,7 @@ import { closeModal } from "../redux/actions";
 class ConnectedModalLogin extends React.Component {
   render() {
     return (
-      <div id="myModal" className="modal ">
+      <div id="loginModal" className="modal">
         <div className="modal-content button">
           <span
             className="close"
@@ -13,7 +13,7 @@ class ConnectedModalLogin extends React.Component {
           >
             &times;
           </span>
-          <p>{this.props.text}</p>
+          <p id="modalText">{this.props.text}</p>
         </div>
       </div>
     );

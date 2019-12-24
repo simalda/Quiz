@@ -1,11 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./CSS/CSS-GRID/main.css";
-//import "./CSS/bootstrap.min.css";
-// import "./CSS/index.css";
-
-// import "./CSS/Quiz.css";
-// import "./CSS/login.css";
 
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
