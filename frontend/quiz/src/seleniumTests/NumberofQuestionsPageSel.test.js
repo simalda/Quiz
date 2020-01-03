@@ -1,8 +1,9 @@
 import { Builder } from "selenium-webdriver";
 import LogInPage from "./Pages/LogInPage";
 import MainPage from "./Pages/MainPage";
+import ChooseNumberPage from "./Pages/ChooseNumberPage";
 
-describe("Main Page", () => {
+describe("Number of Questions Page", () => {
   let driver;
   let logInPage;
   let mainPage;
@@ -14,8 +15,10 @@ describe("Main Page", () => {
       .build();
     logInPage = new LogInPage(driver);
     logInPage.open("http://localhost:3000/");
-    mainPage = await logInPage.enterAsGuestClick();
-    chooseNumberPage = await mainPage.PythonClick();
+    await logInPage.enterAsGuestClick();
+    mainPage = new MainPage(driver);
+    await mainPage.PythonClick();
+    chooseNumberPage = new ChooseNumberPage(driver);
   });
 
   afterEach(async () => {

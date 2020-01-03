@@ -57,7 +57,7 @@ class ConnectedCQuizStep extends React.Component {
     }
     return (
       <div id="container-quiz_step">
-        <div className="text heade">
+        <div className="text heade" id="counterId">
           {this.props.numberOfCurrentQuestion + 1}\
           {this.props.numberOfQuestions}
         </div>

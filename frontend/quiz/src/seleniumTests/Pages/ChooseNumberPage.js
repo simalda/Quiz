@@ -1,31 +1,26 @@
 import Page from "./Page";
-import QuizPage from "./QuizPage";
-
+import { getElementById } from "./Utility";
 class ChooseNumberPage extends Page {
   async getHeader() {
-    const c = await super.getElementById("header");
-    console.log(c);
-    const tex = await c.getText();
-    console.log(tex);
-    return tex;
-  }
-  async numberOfQuestionsInputValue() {
-    return await super.getElementById("numberOfQuestionsInput").value;
-  }
-
-  setNumberOfQuestionsInputValue(value) {
-    super.getElementById("numberOfQuestionsInput").sendKeys(value);
+    return await getElementById(this.driver, "header").then(el => el.getText());
   }
   async getStartTheQuizBtn() {
-    return await super.getElementById("startButton");
+    return await getElementById(this.driver, "startButton");
   }
-  async startTheQuizBtnClick() {
-    await super.getElementById("startButton").then(el => el.click());
-    return new QuizPage(this.driver);
+  async numberOfQuestionsInputValue() {
+    return await getElementById(this.driver, "numberOfQuestionsInput").value;
   }
-
   async open(path) {
     await super.open(path);
+  }
+  async setNumberOfQuestionsInputValue(value) {
+    await getElementById(this.driver, "numberOfQuestionsInput").then(el =>
+      el.sendKeys(value)
+    );
+  }
+
+  async startTheQuizBtnClick() {
+    await getElementById(this.driver, "startButton").then(el => el.click());
   }
 }
 

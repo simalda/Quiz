@@ -1,40 +1,26 @@
 import Page from "./Page";
-import AboutUsPage from "./AboutUsPage";
-import Button from "./Button";
-import StatisticsPage from "./StatisticsPage";
-import AddQuestionPage from "./AddQuestionPage";
-import ChooseNumberPage from "./ChooseNumberPage";
-
+import { getElementById } from "./Utility";
 class NavBarPage extends Page {
-  async getUsername() {
-    const c = await super.getElementById("user");
-    const text = await c.getText();
-    return text;
-  }
   async AboutUsClick() {
-    const btn = await super.getElementById("aboutUs");
-    await btn.click();
-    return new AboutUsPage(this.driver);
-  }
-  async StatisticsClick() {
-    const btn = await super.getElementById("stat");
-    await btn.click();
-    return new StatisticsPage(this.driver);
+    await getElementById(this.driver, "aboutUs").then(el => el.click());
   }
   async AddQuestionClick() {
-    const btn = await super.getElementById("addQuestion");
-    await btn.click();
-    return new AddQuestionPage(this.driver);
+    await getElementById(this.driver, "addQuestion").then(el => el.click());
+  }
+  async JSClick() {
+    await getElementById(this.driver, "JS").then(el => el.click());
+  }
+  async getUsername() {
+    const text = await getElementById(this.driver, "user").then(el =>
+      el.getText()
+    );
+    return text;
   }
   async PythonClick() {
-    //return await Button.languageClick("Python");
-    const el = await super.getElementById("Python");
-    await el.click();
-    return new ChooseNumberPage(this.driver);
+    await getElementById(this.driver, "Python").then(el => el.click());
   }
-
-  async JSClick() {
-    await Button.languageClick("JS");
+  async StatisticsClick() {
+    await getElementById(this.driver, "stat").then(el => el.click());
   }
 }
 

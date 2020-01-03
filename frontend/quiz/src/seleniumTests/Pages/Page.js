@@ -1,22 +1,11 @@
-import { By, until } from "selenium-webdriver";
+import Element2 from "./Element";
 
-export default class Page extends Element {
+class Page extends Element2 {
   async open(path) {
     await this.driver.get(path);
   }
-
-  async getElementById(id, timeout = 2000) {
-    const el = await this.driver.wait(until.elementLocated(By.id(id)), timeout);
-    return await this.driver.wait(until.elementIsVisible(el), timeout);
-  }
-  async getElementByText(text, timeout = 2000) {
-    const el = await this.driver.wait(
-      until.elementLocated(By.text(text)),
-      timeout
-    );
-    return await this.driver.wait(until.elementIsVisible(el), timeout);
-  }
 }
+export default Page;
 //driver.find_elements_by_xpath("//*[contains(text(), 'My Button')]")
 //   foo(){
 //   fetch("google.com")

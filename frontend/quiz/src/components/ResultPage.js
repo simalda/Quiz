@@ -47,7 +47,10 @@ class ConnectedResultPage extends React.Component {
     }
     return (
       <div id="container-result">
-        <div className="heade top"> RESULT: {this.percentage} % </div>
+        <div className="heade top" id="resultHeader">
+          {" "}
+          RESULT: {this.percentage} %{" "}
+        </div>
         <div className="text font30">
           Correct answers -- {this.props.numberOfCorrectAnswers}, Incorrect
           answers -- {this.incorrectAnswers}

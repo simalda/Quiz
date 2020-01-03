@@ -2,6 +2,9 @@ import Page from "./Page";
 import ChooseNumberPage from "./ChooseNumberPage";
 
 class ResultPage extends Page {
+  async isVisible() {
+    return super.isVisibleById("resultHeader");
+  }
   async startNewQuizClick() {
     const btn = await super.getElementById("startQuizButton");
     await btn.click();

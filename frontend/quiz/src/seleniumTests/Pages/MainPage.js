@@ -1,20 +1,23 @@
 import Page from "./Page";
-//import Button from "./Button";
-import ChooseNumberPage from "./ChooseNumberPage";
-
+import { getElementById } from "./Utility";
 class MainPage extends Page {
-  open() {
-    super.open("main");
+  async isVisible() {
+    return super.isVisibleById("container-main");
   }
-
+  async getBtnTest() {
+    return await getElementById(this.driver, "TestBtn");
+  }
   async getBtnPython() {
-    return await super.getElementById("PythonBtn");
+    return await getElementById(this.driver, "PythonBtn");
   }
-
+  async open() {
+    await super.open("main");
+  }
+  async TestClick() {
+    await getElementById(this.driver, "TestBtn").then(el => el.click());
+  }
   async PythonClick() {
-    const el = await super.getElementById("Python");
-    await el.click();
-    return new ChooseNumberPage(this.driver);
+    await getElementById(this.driver, "PythonBtn").then(el => el.click());
   }
 }
 

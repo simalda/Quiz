@@ -15,11 +15,15 @@ class ConnectedMainPage extends React.Component {
   }
 
   produceLanguages(languages) {
+    if (this.props.user === "test5@te.com") {
+      this.languages.push("Test");
+    }
     return languages.map((language, index) => (
       <Link
         to="/choosesNumber"
         id={language + "Btn"}
-        index
+        key={language}
+        index={index}
         className="gridMain langDiv"
         onClick={() =>
           this.handleSubmit(this.props.onLanguageSelected, language)
@@ -33,13 +37,16 @@ class ConnectedMainPage extends React.Component {
   }
 
   render() {
-    return <div id="container"> {this.produceLanguages(this.languages)} </div>;
+    return (
+      <div id="container-main"> {this.produceLanguages(this.languages)} </div>
+    );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    ...ownProps
+    ...ownProps,
+    user: state.userReducer.user
   };
 };
 

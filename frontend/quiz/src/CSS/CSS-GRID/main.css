@@ -97,7 +97,13 @@ code {
   color: white;
   margin-bottom: 20px;
   font-size: 20px;
-  display: block;
+  display: grid;
+  width: 30%;
+}
+.text3 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 #login {
   grid-column-start: 2;
@@ -191,7 +197,7 @@ h4 {
   text-align: center;
 }
 
-#container {
+#container-main {
   display: flex;
   flex-direction: column;
   height: 400px;

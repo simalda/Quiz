@@ -1,50 +1,38 @@
 import Page from "./Page";
-import MainPage from "./MainPage";
-import NavBarPage from "./NavBarPage";
-import ModalSignupPage from "./ModalSignupPage";
-
+import { getElementById } from "./Utility";
+const usernameId = "username";
+const passwordId = "password";
+const loginBtnId = "login";
+const singBtnId = "signUp";
+const enterAsGuestBtnId = "enterAsGuest";
 class LoginPage extends Page {
   async enterAsGuestClick() {
-    const btn = await super.getElementById("enterAsGuest");
-    await btn.click();
-    return new MainPage(this.driver);
+    await getElementById(this.driver, enterAsGuestBtnId).then(el => el.click());
   }
-
-  async isLoginModalOpen() {
-    try {
-      return await super.getElementById("loginModal");
-    } catch {
-      return false;
-    }
+  async getPassword() {
+    return await getElementById(this.driver, passwordId).value;
   }
   async logInClick() {
-    const logBtn = await super.getElementById("login");
-    await logBtn.click();
-    return new NavBarPage(this.driver);
-  }
-  async loginModalText() {
-    return await super.getElementById("modalText").then(el => el.getText());
+    await getElementById(this.driver, loginBtnId).then(el => el.click());
   }
   async open() {
     await super.open("http://localhost:3000/");
   }
-  async getPassword() {
-    return await super.getElementById("password").value;
-  }
   async signUpClick() {
-    await super.getElementById("signUp").then(el => el.click());
-    return new ModalSignupPage(this.driver);
+    await getElementById(this.driver, singBtnId).then(el => el.click());
   }
   async setPassword(value) {
-    const password = await super.getElementById("password");
-    password.sendKeys(value);
+    await getElementById(this.driver, passwordId).then(el =>
+      el.sendKeys(value)
+    );
   }
   async setUsername(value) {
-    const user = await super.getElementById("username");
-    await user.sendKeys(value);
+    await getElementById(this.driver, usernameId).then(el =>
+      el.sendKeys(value)
+    );
   }
   async getUsername() {
-    return await super.getElementById("username").value;
+    return await getElementById(this.driver, usernameId).value;
   }
 }
 

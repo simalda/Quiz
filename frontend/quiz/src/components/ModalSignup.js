@@ -44,11 +44,11 @@ class ConnectedModalSignup extends React.Component {
           />
           <Link
             id="SingUp"
+            to="/signup"
             onClick={() => this.handleSubmit(this.props.signUp)}
           >
             Signup
           </Link>
-          {/* to="/add"  */}
         </div>
       </div>
     );

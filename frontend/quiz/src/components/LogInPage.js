@@ -40,7 +40,14 @@ class ConnectedLogInPage extends React.Component {
     const password = document.getElementById("password").value;
     this.props.login(user, password);
   }
-
+  reasonItem(text) {
+    return (
+      <div className="text3">
+        <img alt="" className="image ViImage" src={vi} />
+        {text}
+      </div>
+    );
+  }
   render() {
     let modal = this.createModal(this.props.modal);
     let input;
@@ -65,6 +72,7 @@ class ConnectedLogInPage extends React.Component {
         />
       );
     }
+
     return (
       <div>
         <div id="grid-container">
@@ -80,19 +88,10 @@ class ConnectedLogInPage extends React.Component {
           <h3 id="newMember-text"> NEW MEMBER</h3>
           {input}
           <div id="text">
-            <div className="text2 ">Why to sing in?</div>
-            <div className="text2 ">
-              <img alt="" className="image ViImage" src={vi} />
-              See your history quiz progression
-            </div>
-            <div className="text2 ">
-              <img alt="" className="image ViImage" src={vi} />
-              Be the first to know about new quizzes
-            </div>
-            <div className="text2 ">
-              <img alt="" className="image ViImage" src={vi} />
-              Add new questions
-            </div>
+            <div className="text3">Why to sing in?</div>
+            {this.reasonItem("See your history quiz progression")}
+            {this.reasonItem("Be the first to know about new quizzes")}
+            {this.reasonItem("Add new questions")}
           </div>
           <input
             className="button"

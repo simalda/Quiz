@@ -1,7 +1,6 @@
-import Page from "./Page";
 import ChooseNumberPage from "./ChooseNumberPage";
 
-class Button extends Page {
+class Button extends Element {
   static async languageClick(lang) {
     console.log(lang);
     const el = await super.getElementById("Python");

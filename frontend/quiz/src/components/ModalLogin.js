@@ -8,6 +8,7 @@ class ConnectedModalLogin extends React.Component {
       <div id="loginModal" className="modal">
         <div className="modal-content button">
           <span
+            id="close"
             className="close"
             onClick={x => this.props.closeModal(this.props.user)}
           >

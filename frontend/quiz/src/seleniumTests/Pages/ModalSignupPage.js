@@ -1,52 +1,37 @@
 import Page from "./Page";
-import MainPage from "./MainPage";
-import LoginPage from "./LoginPage";
+
+const visibilityId = "closeModal";
+const username = "usernameS";
+const firstPassword = "passwordS";
+const secondPassword = "password2";
+const signupBtnId = "SingUp";
 
 class ModalSignupPage extends Page {
-  async isModalOpen() {
-    try {
-      return await super.getElementById("username");
-    } catch {
-      return false;
-    }
-  }
-  async getUsernameInputId() {
-    const user = await super.getElementById("username");
-    const userId = await user.getAttribute("id");
-    return userId;
+  async isVisible() {
+    return await super.isVisibleById(visibilityId);
   }
 
   async usernameInputValue() {
-    return await super.getElementById("usernameS").value;
+    return await super.getElementById(username).value;
   }
   async passwordInputValue() {
-    return await super.getElementById("passwordS").value;
+    return await super.getElementById(firstPassword).value;
   }
 
   async password2InputValue() {
-    return await super.getElementById("password2").value;
+    return await super.getElementById(secondPassword).value;
   }
   setUsername(value) {
-    super.getElementById("usernameS").sendKeys(value);
+    super.getElementById(username).sendKeys(value);
   }
   setPassword(value) {
-    super.getElementById("passwordS").sendKeys(value);
+    super.getElementById(firstPassword).sendKeys(value);
   }
   setPassword2(value) {
-    super.getElementById("password2").sendKeys(value);
+    super.getElementById(secondPassword).sendKeys(value);
   }
   async signUpClick(status) {
-    const btn = await super.getElementById("enterAsGuest");
-    await btn.click();
-    if (status === true) {
-      return new MainPage(this.driver);
-    } else {
-      return new LoginPage(this.driver);
-    }
-  }
-
-  async logInClick() {
-    super.getElementById("login").click();
+    await super.getElementById(signupBtnId).then(el => el.click());
   }
 
   async open(path) {
