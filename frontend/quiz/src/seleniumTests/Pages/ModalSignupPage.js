@@ -1,4 +1,5 @@
 import Page from "./Page";
+import { getElementById } from "./Utility";
 
 const visibilityId = "closeModal";
 const username = "usernameS";
@@ -11,27 +12,17 @@ class ModalSignupPage extends Page {
     return await super.isVisibleById(visibilityId);
   }
 
-  async usernameInputValue() {
-    return await super.getElementById(username).value;
+  get usernameBtn() {
+    return getElementById(this.driver, username);
   }
-  async passwordInputValue() {
-    return await super.getElementById(firstPassword).value;
+  get passwordBtn() {
+    return getElementById(this.driver, firstPassword);
   }
-
-  async password2InputValue() {
-    return await super.getElementById(secondPassword).value;
+  get password2Btn() {
+    return getElementById(this.driver, secondPassword);
   }
-  setUsername(value) {
-    super.getElementById(username).sendKeys(value);
-  }
-  setPassword(value) {
-    super.getElementById(firstPassword).sendKeys(value);
-  }
-  setPassword2(value) {
-    super.getElementById(secondPassword).sendKeys(value);
-  }
-  async signUpClick(status) {
-    await super.getElementById(signupBtnId).then(el => el.click());
+  get signUpBtn() {
+    return getElementById(this.driver, signupBtnId);
   }
 
   async open(path) {

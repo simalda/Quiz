@@ -1,14 +1,12 @@
 import Page from "./Page";
-import ChooseNumberPage from "./ChooseNumberPage";
+import { getElementById } from "./Utility";
 
 class ResultPage extends Page {
   async isVisible() {
     return super.isVisibleById("resultHeader");
   }
-  async startNewQuizClick() {
-    const btn = await super.getElementById("startQuizButton");
-    await btn.click();
-    return new ChooseNumberPage(this.driver);
+  get startNewQuizBtn() {
+    return getElementById(this.driver, "startQuizButton");
   }
 
   async open(path) {

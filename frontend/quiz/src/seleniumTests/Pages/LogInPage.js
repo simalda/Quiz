@@ -6,34 +6,48 @@ const loginBtnId = "login";
 const singBtnId = "signUp";
 const enterAsGuestBtnId = "enterAsGuest";
 class LoginPage extends Page {
-  async enterAsGuestClick() {
-    await getElementById(this.driver, enterAsGuestBtnId).then(el => el.click());
+  get enterAsGuestButton() {
+    return getElementById(this.driver, enterAsGuestBtnId);
   }
-  async getPassword() {
-    return await getElementById(this.driver, passwordId).value;
+
+  get logInBtn() {
+    return getElementById(this.driver, loginBtnId);
   }
-  async logInClick() {
-    await getElementById(this.driver, loginBtnId).then(el => el.click());
+
+  async LogInWith(username, password) {
+    await console.log("logtest");
+    await (await this.usernameInput).sendKeys(username);
+    await console.log("logtest2");
+    await (await this.passwordInput).sendKeys(password);
+    await console.log("logtest3");
+    await (await this.logInBtn).click();
+    await console.log("logtest4");
   }
   async open() {
     await super.open("http://localhost:3000/");
   }
-  async signUpClick() {
-    await getElementById(this.driver, singBtnId).then(el => el.click());
+  get signUpBtn() {
+    return getElementById(this.driver, singBtnId);
   }
-  async setPassword(value) {
-    await getElementById(this.driver, passwordId).then(el =>
-      el.sendKeys(value)
-    );
+  get passwordInput() {
+    return getElementById(this.driver, passwordId);
   }
-  async setUsername(value) {
-    await getElementById(this.driver, usernameId).then(el =>
-      el.sendKeys(value)
-    );
+  get usernameInput() {
+    return getElementById(this.driver, usernameId);
   }
-  async getUsername() {
-    return await getElementById(this.driver, usernameId).value;
-  }
+  // async setPassword(value) {
+  //   await getElementById(this.driver, passwordId).then(el =>
+  //     el.sendKeys(value)
+  //   );
+  // }
+  // async setUsername(value) {
+  //   await getElementById(this.driver, usernameId).then(el =>
+  //     el.sendKeys(value)
+  //   );
+  // }
+  // async getUsername() {
+  //   return await getElementById(this.driver, usernameId).value;
+  // }
 }
 
 export default LoginPage;
