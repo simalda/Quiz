@@ -1,4 +1,4 @@
-import LogInPage from "./Pages/LogInPage";
+import * as flowLogin from "./Flows/flowLogin";
 import MainPage from "./Pages/MainPage";
 import ChooseNumberPage from "./Pages/ChooseNumberPage";
 import DriverFactory from "./Pages/DriverFactory";
@@ -10,12 +10,10 @@ describe("Number of Questions Page", () => {
   let chooseNumberPage;
   beforeEach(async () => {
     let dri = new DriverFactory();
-    driver = await dri.createDriverChrome();
-    logInPage = new LogInPage(driver);
-    logInPage.open("http://localhost:3000/");
-    await (await logInPage.enterAsGuestButton).click();
+    driver = await dri.createAndOpenChrome();
+    await flowLogin.loginAsGuest(driver);
     mainPage = new MainPage(driver);
-    await (await mainPage.BtnPython).click();
+    await (await mainPage.pythonBtn).click();
     chooseNumberPage = new ChooseNumberPage(driver);
   });
 
@@ -25,7 +23,7 @@ describe("Number of Questions Page", () => {
   });
 
   it("check button color", async () => {
-    const color = await (await chooseNumberPage.StartTheQuizBtn).getCssValue(
+    const color = await (await chooseNumberPage.startTheQuizBtn).getCssValue(
       "background-color"
     );
     console.log(color);

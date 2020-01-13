@@ -1,4 +1,3 @@
-import LogInPage from "./Pages/LogInPage";
 import NavBarPage from "./Pages/NavBarPage";
 import ChooseNumberPage from "./Pages/ChooseNumberPage";
 import AboutUsPage from "./Pages/AboutUsPage";
@@ -6,13 +5,10 @@ import DriverFactory from "./Pages/DriverFactory";
 
 describe("Nav bar links", () => {
   let driver;
-  let logInPage;
   let navbar;
   beforeEach(async () => {
     let dri = new DriverFactory();
-    driver = await dri.createDriverChrome();
-    logInPage = new LogInPage(driver);
-    logInPage.open("http://localhost:3000/");
+    driver = await dri.createAndOpenChrome();
     navbar = new NavBarPage(driver);
   });
 

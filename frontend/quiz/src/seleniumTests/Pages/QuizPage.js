@@ -25,7 +25,7 @@ class QuizPage extends Page {
   get incorrectAnswerOptionBtn() {
     return getElementByXpath(this.driver, incorrectAnswerXpath);
   }
-  get CounterCurrentQuestion() {
+  get counterCurrentQuestion() {
     return getElementById(this.driver, counterId);
     // .then(el =>      el.getText());
   }

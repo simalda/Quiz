@@ -4,7 +4,7 @@ class ChooseNumberPage extends Page {
   get Header() {
     return getElementById(this.driver, "header");
   }
-  get StartTheQuizBtn() {
+  get startTheQuizBtn() {
     return getElementById(this.driver, "startButton");
   }
   get numberOfQuestionsInput() {

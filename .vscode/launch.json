@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Sofa",
+      "name": "BackEnd python debug",
       "type": "python",
       "request": "launch",
       "module": "flask",
@@ -14,6 +14,37 @@
       },
       "args": ["run", "--no-debugger", "--no-reload"],
       "jinja": true
+    },
+    {
+      "name": "Debug All Jest Tests",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/frontend/quiz/node_modules/jest/bin/jest.js",
+        "--runInBand",
+        "--no-cache"
+      ],
+      "cwd": "${workspaceFolder}/frontend/quiz/",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229
+    },
+    {
+      "name": "Jest Debug Current File",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/frontend/quiz/node_modules/jest/bin/jest.js",
+        "${fileBasenameNoExtension}",
+        "--runInBand",
+        "--no-cache"
+      ],
+      "cwd": "${workspaceFolder}/frontend/quiz/",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229
     }
   ]
 }

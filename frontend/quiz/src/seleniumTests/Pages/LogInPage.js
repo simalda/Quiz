@@ -14,15 +14,6 @@ class LoginPage extends Page {
     return getElementById(this.driver, loginBtnId);
   }
 
-  async LogInWith(username, password) {
-    await console.log("logtest");
-    await (await this.usernameInput).sendKeys(username);
-    await console.log("logtest2");
-    await (await this.passwordInput).sendKeys(password);
-    await console.log("logtest3");
-    await (await this.logInBtn).click();
-    await console.log("logtest4");
-  }
   async open() {
     await super.open("http://localhost:3000/");
   }
