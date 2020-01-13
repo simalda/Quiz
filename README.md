@@ -3,6 +3,7 @@ Online quizes on several languages: Python, React, SQL
 User can chose the number of questions in quiz.
 While redoing the same quiz questions will change ( in contrast to all quizes I did)
 
+
 # Getting Started
 Create folder on your computer install git and pull from git.
 git creat new folder named Quiz
