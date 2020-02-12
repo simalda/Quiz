@@ -26,19 +26,6 @@ class LoginPage extends Page {
   get usernameInput() {
     return getElementById(this.driver, usernameId);
   }
-  // async setPassword(value) {
-  //   await getElementById(this.driver, passwordId).then(el =>
-  //     el.sendKeys(value)
-  //   );
-  // }
-  // async setUsername(value) {
-  //   await getElementById(this.driver, usernameId).then(el =>
-  //     el.sendKeys(value)
-  //   );
-  // }
-  // async getUsername() {
-  //   return await getElementById(this.driver, usernameId).value;
-  // }
 }
 
 export default LoginPage;
