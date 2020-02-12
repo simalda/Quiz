@@ -3,6 +3,10 @@ Online quizes on several languages: Python, React, SQL
 User can chose the number of questions in quiz.
 While redoing the same quiz questions will change ( in contrast to all quizes I did)
 
+![alt text](./frontend/WhatIHave/logIn.jpg)
+
+![alt text](./frontend/WhatIHave/quizPage.jpg)
+
 
 # Getting Started
 Create folder on your computer install git and pull from git.
@@ -45,7 +49,7 @@ ubuntu - https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/
 
 # Running the tests
 
-# Deployment
+# Deployment!
  
 
 # Built With
