@@ -1,4 +1,5 @@
 import pyodbc
+import random
 import random 
 from UserStatus import CreateUserStatus
 class SQL(object):
